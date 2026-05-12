@@ -1,30 +1,58 @@
-const CACHE_NAME = 'sao-joao-v1';
+const CACHE_NAME = 'sao-joao-v2'; 
+
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/css/style.css',
   '/js/app.js',
-  '/manifest.json',
-  '/images/logo.png'
+  '/js/tailwind-config.js', 
+  '/manifest.json'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Arquivos do São João em cache!');
+      console.log('Cache v2: Arquivos locais salvos!');
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
+
+  self.skipWaiting(); 
 });
 
 self.addEventListener('activate', event => {
-  console.log('Service Worker do São João Ativado');
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== CACHE_NAME) {
+            console.log('Limpando cache antigo:', cache);
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+  self.clients.claim();
 });
 
 self.addEventListener('fetch', event => {
+  if (!(event.request.url.startsWith('http'))) return;
+
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(event.request).then(networkResponse => {
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      }).catch(() => {   
+        console.log('Falha ao buscar recurso offline:', event.request.url);
+      });
     })
   );
 });
