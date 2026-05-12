@@ -1,22 +1,23 @@
-const CACHE_NAME = 'sao-joao-v2'; 
+const CACHE_NAME = 'sao-joao-v4'; 
 
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
+  '/agenda.html',            
   '/css/style.css',
   '/js/app.js',
   '/js/tailwind-config.js', 
   '/manifest.json'
 ];
 
+// Instalação do Service Worker
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Cache v2: Arquivos locais salvos!');
+      console.log('Cache v3: Sistema atualizado com a Agenda!');
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
-
   self.skipWaiting(); 
 });
 
@@ -26,7 +27,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cache => {
           if (cache !== CACHE_NAME) {
-            console.log('Limpando cache antigo:', cache);
+            console.log('Removendo cache antigo:', cache);
             return caches.delete(cache);
           }
         })
@@ -50,8 +51,8 @@ self.addEventListener('fetch', event => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
         });
-      }).catch(() => {   
-        console.log('Falha ao buscar recurso offline:', event.request.url);
+      }).catch(() => { 
+        console.log('Recurso não disponível offline:', event.request.url);
       });
     })
   );
