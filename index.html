@@ -1,24 +1,159 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html class="dark" lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#E65100"> <!-- Laranja São João -->
-  <title>São João de Arcoverde</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <h1>São João de Arcoverde 🌽</h1>
-  </header>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>São João Vivo - Início</title>
   
-  <main>
-    <img src="images/logo.png" alt="adicioanr logo" class="logo">
-    <p>O melhor São João do mundo, agora no seu bolso!</p>
-    <div id="status">Verificando conexão...</div>
+  <!-- TAGS DO PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#081329">
+  <link rel="icon" href="images/icons/icon-192.png" type="image/png">
+
+  <!-- FONTES DO GOOGLE -->
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Newsreader:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- SEU CSS PERSONALIZADO -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- TAILWIND CSS VIA CDN E ARQUIVO DE CONFIGURAÇÃO -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-background text-on-background font-body-md pb-xl">
+  
+  <!-- TopAppBar -->
+  <header class="bg-surface/90 backdrop-blur-md text-on-surface border-b border-surface-variant sticky top-0 z-50">
+    <div class="flex justify-between items-center w-full px-margin py-sm h-16">
+      <button aria-label="Menu" class="hover:bg-surface-variant text-on-surface p-2 rounded-full transition-colors">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+      </button>
+      <h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">SÃO JOÃO VIVO</h1>
+      <button aria-label="Notificações" class="hover:bg-surface-variant text-on-surface p-2 rounded-full transition-colors relative">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+        <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <main class="max-w-7xl mx-auto">
+    <!-- Festive Hero / Countdown -->
+    <section class="px-margin py-md mt-sm">
+      <div class="bg-surface-container-low border border-surface-variant rounded-xl digital-glow relative overflow-hidden flex flex-col items-center justify-center p-8 text-center min-h-[300px]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_Piq64DMh7pYWbz6iXyPYMeJ9-rZO1rwk509jPbMfPzI6Ho4x3-NM95MEz_73wazSENVrrGAAsJF-plotgSCx3B7Q1M2jr2BqH58cWYXnK5Uu8ppcPYYFihpCZahgPKyeK_62ULMqpxEaCKNh_CM1rREZWbWt1UBGAWBuIjkDQGHFiVfayeQbIeE5GPKyuuigcvfDFl0cNhrZBR61vFlvmrH9XDhR7LQgq93-JbD2KJtWXbsNZGXZvtUGhMkqOK7LKtf_yQxr75iz'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+        <div class="relative z-10 w-full">
+          <div class="bunting-pattern absolute -top-8 left-0 right-0 opacity-80"></div>
+          <span class="inline-block bg-primary-container text-on-primary-container px-4 py-1 rounded-full font-label-bold text-label-bold uppercase tracking-wider mb-4 border border-primary/20 shadow-[0_0_10px_rgba(255,184,0,0.3)]">Faltam</span>
+          <div class="flex justify-center gap-4 mb-6">
+            <div class="bg-surface-container border border-surface-variant rounded-lg flex flex-col items-center p-4 min-w-[80px]">
+              <span class="font-headline-xl text-headline-xl text-primary">12</span>
+              <span class="font-label-bold text-label-bold text-on-surface-variant uppercase mt-1">Dias</span>
+            </div>
+            <div class="font-headline-xl text-headline-xl text-primary flex items-center">:</div>
+            <div class="bg-surface-container border border-surface-variant rounded-lg flex flex-col items-center p-4 min-w-[80px]">
+              <span class="font-headline-xl text-headline-xl text-secondary">08</span>
+              <span class="font-label-bold text-label-bold text-on-surface-variant uppercase mt-1">Horas</span>
+            </div>
+          </div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold uppercase">Para o Grande Arraiá</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patrocinadores -->
+    <section class="px-margin py-base">
+      <h4 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-sm opacity-70">Nossos Patrocinadores</h4>
+      <div class="flex gap-md overflow-x-auto hide-scrollbar snap-x snap-mandatory py-2">
+        <div class="snap-start shrink-0 flex items-center justify-center bg-surface-container-low border border-surface-variant/30 rounded-lg px-6 py-3 min-w-[120px] grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">local_drink</span><span class="font-label-bold text-on-surface uppercase text-xs">BRAHMA</span></div>
+        </div>
+        <div class="snap-start shrink-0 flex items-center justify-center bg-surface-container-low border border-surface-variant/30 rounded-lg px-6 py-3 min-w-[120px] grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">account_balance</span><span class="font-label-bold text-on-surface uppercase text-xs">BANCO X</span></div>
+        </div>
+        <div class="snap-start shrink-0 flex items-center justify-center bg-surface-container-low border border-surface-variant/30 rounded-lg px-6 py-3 min-w-[120px] grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">shopping_cart</span><span class="font-label-bold text-on-surface uppercase text-xs">MAGALU</span></div>
+        </div>
+        <div class="snap-start shrink-0 flex items-center justify-center bg-surface-container-low border border-surface-variant/30 rounded-lg px-6 py-3 min-w-[120px] grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">sensors</span><span class="font-label-bold text-on-surface uppercase text-xs">VIVO</span></div>
+        </div>
+        <div class="snap-start shrink-0 flex items-center justify-center bg-surface-container-low border border-surface-variant/30 rounded-lg px-6 py-3 min-w-[120px] grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">bolt</span><span class="font-label-bold text-on-surface uppercase text-xs">NEOENERGIA</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Destaques do Dia -->
+    <section class="pl-margin py-md overflow-hidden">
+      <div class="flex items-center justify-between pr-margin mb-md">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface">Destaques do Dia</h3>
+        <a class="font-label-bold text-label-bold text-primary uppercase flex items-center hover:text-primary-fixed-dim transition-colors" href="#">Ver Todos <span class="material-symbols-outlined ml-1">arrow_forward</span></a>
+      </div>
+      <div class="flex gap-gutter overflow-x-auto pb-sm snap-x snap-mandatory hide-scrollbar pr-margin">
+        <article class="snap-start shrink-0 w-72 bg-surface-container-low border border-surface-variant rounded-xl flex flex-col overflow-hidden group hover:border-primary/50 transition-colors">
+          <div class="bunting-pattern absolute top-0 left-0 w-full z-10 opacity-50"></div>
+          <div class="h-40 bg-surface-variant relative" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANH2HV0esZg8yp_NQJnvkGrcS2nOZMA3iJPGYfnmaUN2SOXOdYHQ-X_2rwypTAyzHspm--t8mTa48juKHd-SIr-OqtUNpdp3WklXwR_DiTJoFwDfUKLXGghH8idTCZko_rbiEHYITqL0C3I8RD7ebrGt766w2i8gw7eR2kXw3JyhLeGTEvDuVJ1kWTGFAJs1VIBcRaQIX_-gsVckxG5Ule_i3GTiGwP-RvCI2vqLF2Jojdp0vF2sjD1izuYcaw9nXql6FMvK3900Ro'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+            <span class="absolute top-2 right-2 bg-error text-on-error font-label-bold text-label-bold px-3 py-1 rounded-full uppercase z-20 shadow-[0_0_10px_rgba(255,180,171,0.5)]">Ao Vivo</span>
+          </div>
+          <div class="p-4 flex flex-col gap-2 relative z-20 -mt-8">
+            <span class="inline-block self-start bg-surface-bright text-on-surface px-3 py-1 rounded-full border border-surface-variant font-label-sm text-label-sm uppercase">Forró</span>
+            <h4 class="font-headline-md text-headline-md font-bold text-on-surface mt-2 group-hover:text-primary transition-colors">Trio Pé de Serra</h4>
+            <div class="flex items-center text-on-surface-variant text-body-md mt-1"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">location_on</span>Palco Principal</div>
+            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">schedule</span>20:00 - 22:00</div>
+          </div>
+        </article>
+        <article class="snap-start shrink-0 w-72 bg-surface-container-low border border-surface-variant rounded-xl flex flex-col overflow-hidden group hover:border-primary/50 transition-colors">
+          <div class="bunting-pattern absolute top-0 left-0 w-full z-10 opacity-50"></div>
+          <div class="h-40 bg-surface-variant relative" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmGVId9_DvsYC25j1v_gLUOy0nM2EiBLTa0TJNGT_mz3KbF5DYtgfOEZsQc2b0xa7QDP5V0PCd-D9dvgk8AvtFKU_iPczTRpHtMS-vSeP9iK-tdX1N0tzfZVBXqgvxgkaUJBm0Weu_tuuUApRjfDfdkU4GsmO3a8frjgkqDF000Lzril_JDD4pUdR1-f4CapV-38X3Z6f8ga_LZx8ZK-1G9MqTR4TByZzLdy4xCTJyluAF8XgqoggZt-ZvUqlz6e56MTAM8ViGd0pm'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+          </div>
+          <div class="p-4 flex flex-col gap-2 relative z-20 -mt-8">
+            <span class="inline-block self-start bg-surface-bright text-on-surface px-3 py-1 rounded-full border border-surface-variant font-label-sm text-label-sm uppercase">Quadrilha</span>
+            <h4 class="font-headline-md text-headline-md font-bold text-on-surface mt-2 group-hover:text-primary transition-colors">Flor do Sertão</h4>
+            <div class="flex items-center text-on-surface-variant text-body-md mt-1"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">location_on</span>Arena das Tradições</div>
+            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">schedule</span>22:30 - 23:30</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="px-margin py-lg">
+      <h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-md">O que procurar?</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+        <a class="bg-surface-container-low border border-surface-variant rounded-xl p-4 flex flex-col items-center justify-center gap-3 hover:bg-surface-container-highest transition-colors group digital-glow" href="#">
+          <div class="w-16 h-16 rounded-full bg-surface-container border border-surface-variant flex items-center justify-center group-hover:scale-110 transition-transform group-hover:border-primary/50"><span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">restaurant</span></div>
+          <span class="font-label-bold text-label-bold uppercase text-on-surface text-center">Comidas</span>
+        </a>
+        <a class="bg-surface-container-low border border-surface-variant rounded-xl p-4 flex flex-col items-center justify-center gap-3 hover:bg-surface-container-highest transition-colors group digital-glow" href="#">
+          <div class="w-16 h-16 rounded-full bg-surface-container border border-surface-variant flex items-center justify-center group-hover:scale-110 transition-transform group-hover:border-secondary/50"><span class="material-symbols-outlined text-[32px] text-secondary" style="font-variation-settings: 'FILL' 1;">music_note</span></div>
+          <span class="font-label-bold text-label-bold uppercase text-on-surface text-center">Shows</span>
+        </a>
+        <a class="col-span-2 md:col-span-1 bg-surface-container-low border border-surface-variant rounded-xl p-4 flex flex-col items-center justify-center gap-3 hover:bg-surface-container-highest transition-colors group relative overflow-hidden digital-glow" href="#">
+          <div class="w-16 h-16 rounded-full bg-surface-container border border-surface-variant flex items-center justify-center group-hover:scale-110 transition-transform relative z-10 group-hover:border-tertiary/50"><span class="material-symbols-outlined text-[32px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">celebration</span></div>
+          <span class="font-label-bold text-label-bold uppercase text-on-surface text-center relative z-10">Quadrilhas</span>
+        </a>
+        <a class="col-span-2 md:col-span-1 bg-primary-container text-on-primary-container border border-primary/30 rounded-xl p-4 flex flex-col items-center justify-center gap-3 hover:bg-primary transition-colors group shadow-[0_0_20px_rgba(255,184,0,0.2)]" href="#">
+          <div class="w-16 h-16 rounded-full bg-surface-container-lowest/20 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-[32px] text-on-primary-container" style="font-variation-settings: 'FILL' 1;">map</span></div>
+          <span class="font-label-bold text-label-bold uppercase text-center">Mapa da Festa</span>
+        </a>
+      </div>
+    </section>
   </main>
 
+  <!-- BottomNavBar (Mobile Only) -->
+  <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50 flex justify-around items-center px-2 py-3 bg-surface-container/80 backdrop-blur-xl border border-surface-variant/30 rounded-[32px] shadow-2xl md:hidden">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90" href="#"><span class="material-symbols-outlined text-[24px]">calendar_month</span><span class="font-label-sm text-[10px] mt-1">Agenda</span></a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90" href="#"><span class="material-symbols-outlined text-[24px]">map</span><span class="font-label-sm text-[10px] mt-1">Mapa</span></a>
+    <a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full w-16 h-16 -mt-10 shadow-lg shadow-primary/30 transition-all active:scale-95 border-4 border-background" href="#"><span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">home</span><span class="font-label-bold text-[10px]">Início</span></a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90" href="#"><span class="material-symbols-outlined text-[24px]">theater_comedy</span><span class="font-label-sm text-[10px] mt-1">Cultural</span></a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90" href="#"><span class="material-symbols-outlined text-[24px]">person</span><span class="font-label-sm text-[10px] mt-1">Perfil</span></a>
+  </nav>
+
+  <!-- SCRIPT PWA NO FIM DO BODY -->
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,33 +1,39 @@
-body {
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff3e0; /* Fundo creme suave */
-  color: #bf360c; /* Marrom avermelhado */
+/* Altura mínima da tela */
+body { 
+  min-height: max(884px, 100dvh); 
 }
 
-header {
-  background: #e65100; /* Laranja vibrante */
-  color: white;
+/* Padrão de bandeirinhas do São João */
+.bunting-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 20,20 40,0' fill='%23ffb5a0'/%3E%3Cpolygon points='0,0 10,10 20,0' fill='%23ffba20'/%3E%3Cpolygon points='20,0 30,10 40,0' fill='%23ffdca1'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  height: 20px;
   width: 100%;
-  text-align: center;
-  padding: 1.5rem 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: block;
 }
 
-.logo {
-  max-width: 200px;
-  margin-top: 2rem;
-  border-radius: 50%;
+/* Efeitos de brilho digital */
+.digital-glow { 
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.2); 
+  transition: box-shadow 0.3s ease;
 }
 
-#status {
-  margin-top: 20px;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 20px;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.digital-glow:hover { 
+  box-shadow: 0 0 25px rgba(255, 184, 0, 0.4); 
+}
+
+/* Ajuste de margem para dispositivos móveis (ex: iPhone) */
+.pb-safe { 
+  padding-bottom: env(safe-area-inset-bottom, 12px); 
+}
+
+/* Esconder barra de rolagem horizontal (Chrome, Safari, Opera) */
+.hide-scrollbar::-webkit-scrollbar { 
+  display: none; 
+}
+
+/* Esconder barra de rolagem horizontal (IE, Edge, Firefox) */
+.hide-scrollbar { 
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
