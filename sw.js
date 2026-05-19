@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sao-joao-v4'; 
+const CACHE_NAME = 'sao-joao-v5'; // ✅ versão incrementada para derrubar caches antigos
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -14,7 +14,7 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Cache v3: Sistema atualizado com a Agenda!');
+      console.log('Cache v5: Sistema atualizado!'); // ✅ log correto
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
@@ -51,7 +51,11 @@ self.addEventListener('fetch', event => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
         });
-      }).catch(() => { 
+      }).catch(() => {
+        // ✅ Fallback offline: se for navegação de página, retorna index.html do cache
+        if (event.request.destination === 'document') {
+          return caches.match('/index.html');
+        }
         console.log('Recurso não disponível offline:', event.request.url);
       });
     })

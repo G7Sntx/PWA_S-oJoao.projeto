@@ -2,9 +2,9 @@
   "name": "São João de Arcoverde",
   "short_name": "SJR Arcoverde",
   "description": "Acompanhe a programação do melhor São João de Pernambuco.",
-  "start_url": "./index.html",
+  "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#040b1a",
   "theme_color": "#E65100",
   "icons": [
     {
