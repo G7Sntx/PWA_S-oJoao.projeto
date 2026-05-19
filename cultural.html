@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>São João Vivo — Cultural</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#040b1a">
+  <link rel="icon" href="images/icons/icon-192.png" type="image/png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#FFB800",
+            "secondary": "#E35205",
+            "background": "#040b1a",
+            "surface": "#040b1a",
+            "surface-dim": "#040b1a",
+            "surface-bright": "#1f2a41",
+            "surface-variant": "#1c263d",
+            "surface-container-lowest": "#020814",
+            "surface-container-low": "#0a162b",
+            "surface-container": "#0c1b36",
+            "surface-container-high": "#152445",
+            "surface-container-highest": "#1c263d",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-background": "#fdf8ef",
+            "on-surface": "#fdf8ef",
+            "on-surface-variant": "#d5c4ab",
+            "primary-container": "#E35205",
+            "on-primary-container": "#ffffff",
+            "secondary-container": "#8b0000",
+            "on-secondary-container": "#ffffff",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "primary-fixed": "#ffdea8",
+            "primary-fixed-dim": "#FFB800",
+            "tertiary": "#e1e1e1",
+            "tertiary-fixed-dim": "#b0b8c8",
+            "outline": "#514532",
+            "outline-variant": "#413626"
+          },
+          spacing: {
+            "margin": "20px",
+            "xl": "64px",
+            "sm": "12px",
+            "md": "24px",
+            "xs": "4px",
+            "gutter": "16px",
+            "base": "8px",
+            "lg": "40px"
+          },
+          fontFamily: {
+            "headline-lg": ["Newsreader"],
+            "headline-xl": ["Newsreader"],
+            "label-bold": ["Be Vietnam Pro"],
+            "body-lg": ["Be Vietnam Pro"],
+            "headline-md": ["Newsreader"],
+            "body-md": ["Be Vietnam Pro"],
+            "label-sm": ["Be Vietnam Pro"]
+          },
+          fontSize: {
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "headline-xl": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+            "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background: linear-gradient(160deg, #040b1a 0%, #081222 60%, #0d1a2e 100%);
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .xilo-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60 L60 0 M15 60 L60 15 M30 60 L60 30 M45 60 L60 45 M0 45 L45 0 M0 30 L30 0 M0 15 L15 0' stroke='%23ffdca1' stroke-width='0.8' fill='none' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    .glass { backdrop-filter: blur(14px); background: rgba(12, 27, 54, 0.55); border: 1px solid rgba(255,184,0,0.08); }
+    .glass-orange { backdrop-filter: blur(14px); background: rgba(227, 82, 5, 0.08); border: 1px solid rgba(227, 82, 5, 0.25); }
+
+    .glow-yellow { box-shadow: 0 0 18px rgba(255, 184, 0, 0.35); }
+    .glow-orange { box-shadow: 0 0 18px rgba(227, 82, 5, 0.35); }
+
+    .bandeirinha { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%); }
+
+    .cat-tab { transition: all 0.2s ease; border-bottom: 2px solid transparent; }
+    .cat-tab.active { color: #FFB800; border-bottom-color: #FFB800; }
+    .cat-tab:not(.active):hover { color: #fdf8ef; border-bottom-color: rgba(255,184,0,0.3); }
+
+    .hist-line { border-left: 2px dashed rgba(255,184,0,0.2); }
+    .hist-dot {
+      width: 14px; height: 14px;
+      background: #FFB800; border-radius: 50%;
+      border: 2px solid #040b1a;
+      box-shadow: 0 0 8px rgba(255,184,0,0.6);
+      position: absolute; left: -8px; top: 4px;
+    }
+    .hist-dot.orange {
+      background: #E35205;
+      box-shadow: 0 0 8px rgba(227,82,5,0.7);
+    }
+
+    .marco-card { transition: transform 0.2s ease, border-color 0.2s ease; cursor: pointer; }
+    .marco-card:hover { transform: translateY(-3px); border-color: rgba(255,184,0,0.4) !important; }
+
+    .cordel-box {
+      background: linear-gradient(135deg, rgba(227,82,5,0.08) 0%, rgba(12,27,54,0.8) 100%);
+      border-left: 3px solid #E35205;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.5s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+
+    .content-panel { display: none; }
+    .content-panel.active { display: block; }
+
+    .expand-body { display: none; }
+    .expand-body.open { display: block; }
+    .expand-arrow { transition: transform 0.25s ease; }
+    .expand-arrow.rotated { transform: rotate(180deg); }
+
+    .stat-badge {
+      background: rgba(255,184,0,0.1);
+      border: 1px solid rgba(255,184,0,0.25);
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 md:pb-0 pt-16 md:pt-20 xilo-bg">
+
+  <header class="fixed top-0 left-0 w-full z-40 bg-surface-container/90 backdrop-blur-md border-b border-surface-container-highest shadow-xl flex justify-between items-center px-margin py-sm h-16 md:h-20">
+    <button aria-label="Menu" class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <h1 class="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary drop-shadow-[0_2px_4px_rgba(227,82,5,0.3)]">SÃO JOÃO VIVO</h1>
+    <nav class="hidden md:flex items-center gap-6">
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="index.html">Início</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="agenda.html">Agenda</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="#">Mapa</a>
+      <a class="font-label-bold text-label-bold text-primary font-bold hover:bg-surface-container-high px-3 py-2 rounded-md transition-colors" href="cultural.html">Cultural</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="#">Perfil</a>
+    </nav>
+    <button aria-label="Notificações" class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
+      <span class="material-symbols-outlined">notifications</span>
+      <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+    </button>
+  </header>
+
+  <section class="relative w-full overflow-hidden border-b border-surface-container-highest bg-surface-container-lowest">
+    <div class="absolute inset-0 bg-cover bg-center opacity-40 z-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANH2HV0esZg8yp_NQJnvkGrcS2nOZMA3iJPGYfnmaUN2SOXOdYHQ-X_2rwypTAyzHspm--t8mTa48juKHd-SIr-OqtUNpdp3WklXwR_DiTJoFwDfUKLXGghH8idTCZko_rbiEHYITqL0C3I8RD7ebrGt766w2i8gw7eR2kXw3JyhLeGTEvDuVJ1kWTGFAJs1VIBcRaQIX_-gsVckxG5Ule_i3GTiGwP-RvCI2vqLF2Jojdp0vF2sjD1izuYcaw9nXql6FMvK3900Ro');"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#040b1a] via-[#040b1a]/80 to-transparent z-10"></div>
+
+    <div class="max-w-4xl mx-auto px-margin pt-8 pb-10 relative z-20 fade-up">
+      <div class="flex gap-2 mb-6 overflow-x-auto no-scrollbar pb-1">
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-primary opacity-90"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-secondary opacity-90"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-primary-fixed opacity-90"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-secondary opacity-70"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-primary opacity-80"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-secondary opacity-90"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-primary-fixed opacity-80"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-primary opacity-70"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-secondary opacity-80"></div>
+        <div class="bandeirinha shrink-0 w-7 h-9 bg-primary-fixed opacity-90"></div>
+      </div>
+
+      <span class="inline-block bg-secondary text-on-secondary font-label-bold text-label-sm px-3 py-1 rounded-full uppercase tracking-wider mb-4 shadow-md">
+        Patrimônio Vivo
+      </span>
+      
+      <h2 class="font-headline-xl text-headline-xl text-on-surface leading-tight mb-3">
+        Arcoverde:<br/>
+        <span class="text-primary italic font-headline-xl">Capital do Forró</span>
+      </h2>
+      
+      <p class="text-on-surface-variant text-body-lg max-w-2xl leading-relaxed mb-6">
+        Portal do Sertão, Arcoverde pulsa ao ritmo da sanfona. Berço de tradições seculares, a cidade se transforma no maior palco da cultura nordestina durante o ciclo junino.
+      </p>
+
+      <div class="grid grid-cols-3 gap-3 max-w-md">
+        <div class="stat-badge px-3 py-2.5 text-center">
+          <p class="font-headline-md text-headline-md text-primary font-bold">1924</p>
+          <p class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider">Fundação</p>
+        </div>
+        <div class="stat-badge px-3 py-2.5 text-center">
+          <p class="font-headline-md text-headline-md text-primary font-bold">80k</p>
+          <p class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider">Habitantes</p>
+        </div>
+        <div class="stat-badge px-3 py-2.5 text-center">
+          <p class="font-headline-md text-headline-md text-primary font-bold">+100</p>
+          <p class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider">Anos de Forró</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sticky top-16 md:top-20 z-30 bg-surface-container/95 backdrop-blur-md border-b border-surface-container-highest shadow-md">
+    <div class="max-w-4xl mx-auto flex overflow-x-auto no-scrollbar px-margin" id="cat-tabs">
+      <button class="cat-tab active shrink-0 px-4 py-3 font-label-bold text-label-bold text-sm" data-panel="historia">História</button>
+      <button class="cat-tab shrink-0 px-4 py-3 font-label-bold text-label-bold text-sm text-on-surface-variant" data-panel="musica">Música</button>
+      <button class="cat-tab shrink-0 px-4 py-3 font-label-bold text-label-bold text-sm text-on-surface-variant" data-panel="marcos">Pontos Históricos</button>
+      <button class="cat-tab shrink-0 px-4 py-3 font-label-bold text-label-bold text-sm text-on-surface-variant" data-panel="arte">Arte & Cordel</button>
+      <button class="cat-tab shrink-0 px-4 py-3 font-label-bold text-label-bold text-sm text-on-surface-variant" data-panel="gastronomia">Gastronomia</button>
+    </div>
+  </div>
+
+  <main class="max-w-4xl mx-auto px-margin py-md">
+
+    <div class="content-panel active" id="panel-historia">
+      <div class="mb-6 fade-up delay-1">
+        <h3 class="font-headline-lg text-headline-lg text-on-surface mb-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">history_edu</span>
+          Linha do Tempo
+        </h3>
+        <p class="text-on-surface-variant text-body-md">De arraial a orgulho do Sertão pernambucano.</p>
+      </div>
+
+      <div class="space-y-6 fade-up delay-2">
+        <div class="relative pl-8 hist-line pb-2">
+          <div class="hist-dot"></div>
+          <span class="font-label-bold text-label-sm text-primary uppercase">Século XIX — ~1880</span>
+          <h4 class="font-headline-md text-headline-md text-on-surface mt-0.5 mb-1">Arraial de Cimbres</h4>
+          <p class="text-on-surface-variant text-body-md">A região começa como um pequeno arraial às margens do Rio Ipanema, ponto de parada de tropeiros que cruzavam o Sertão levando gado, farinha e cultura.</p>
+        </div>
+
+        <div class="relative pl-8 hist-line pb-2">
+          <div class="hist-dot orange"></div>
+          <span class="font-label-bold text-label-sm text-secondary uppercase">1921</span>
+          <h4 class="font-headline-md text-headline-md text-on-surface mt-0.5 mb-1">Vila de Arcoverde</h4>
+          <p class="text-on-surface-variant text-body-md">O povoado é elevado à condição de vila, recebendo o nome de Arcoverde em homenagem ao Cardeal Joaquim Arcoverde de Albuquerque Cavalcanti — o primeiro cardeal das Américas.</p>
+        </div>
+
+        <div class="relative pl-8 hist-line pb-2">
+          <div class="hist-dot"></div>
+          <span class="font-label-bold text-label-sm text-primary uppercase">1924</span>
+          <h4 class="font-headline-md text-headline-md text-on-surface mt-0.5 mb-1">Elevação a Município</h4>
+          <p class="text-on-surface-variant text-body-md">Arcoverde é oficialmente elevada à categoria de município, consolidando sua posição como polo regional comercial e de serviços do Sertão pernambucano.</p>
+        </div>
+
+        <div class="relative pl-8 hist-line pb-2">
+          <div class="hist-dot orange"></div>
+          <span class="font-label-bold text-label-sm text-secondary uppercase">Década de 1940</span>
+          <h4 class="font-headline-md text-headline-md text-on-surface mt-0.5 mb-1">Nasce o Forró em Arcoverde</h4>
+          <p class="text-on-surface-variant text-body-md">Com a popularização do baião por Luiz Gonzaga, Arcoverde absorve e irradia essa musicalidade. Suas festas juninas ganham forte dimensão e tradição regional.</p>
+        </div>
+
+        <div class="relative pl-8 pb-2">
+          <div class="hist-dot"></div>
+          <span class="font-label-bold text-label-sm text-primary uppercase">Anos 2000 – Hoje</span>
+          <h4 class="font-headline-md text-headline-md text-on-surface mt-0.5 mb-1">Capital do Forró de Pernambuco</h4>
+          <p class="text-on-surface-variant text-body-md">Arcoverde consolida seu título oficial. O ciclo junino municipal é amplamente reconhecido como um dos mais autênticos, ricos e tradicionais de todo o Nordeste brasileiro.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 border-2 border-primary/20 rounded-2xl p-5 bg-surface-container-low shadow-lg fade-up delay-2">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 text-primary glow-yellow">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">church</span>
+          </div>
+          <div>
+            <span class="font-label-bold text-label-sm text-primary uppercase tracking-wider">Figura Histórica</span>
+            <h4 class="font-headline-md text-headline-md text-on-surface mt-0.5 mb-2">Cardeal Arcoverde</h4>
+            <p class="text-on-surface-variant text-body-md">
+              Joaquim Arcoverde de Albuquerque Cavalcanti (1850–1930), nascido em Cimbres, foi o primeiro cardeal das Américas — um feito monumental que imortalizou seu nome na história e deu origem à denominação do município.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-panel" id="panel-musica">
+      <div class="mb-6">
+        <h3 class="font-headline-lg text-headline-lg text-on-surface mb-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">music_note</span>
+          Ritmos da Terra
+        </h3>
+        <p class="text-on-surface-variant text-body-md">Arcoverde é som. É sanfona, zabumba, tamanco e triângulo.</p>
+      </div>
+
+      <div class="border-2 border-primary/30 rounded-2xl p-6 bg-surface-container-low shadow-xl mb-6 relative overflow-hidden">
+        <div class="flex items-center gap-2 text-primary mb-3">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">music_note</span>
+          <span class="font-label-bold text-label-sm uppercase tracking-widest">Tradição Única</span>
+        </div>
+        
+        <h3 class="font-headline-lg text-headline-lg font-bold text-on-surface mb-3 leading-tight">
+          Samba de Coco das Irmãs Lopes
+        </h3>
+        
+        <p class="text-on-surface-variant text-body-lg leading-relaxed mb-6">
+          O tamanco de madeira batendo no chão de barro é o coração de Arcoverde. Uma herança negra e indígena que ressoa em cada esquina da cidade através das guardiãs Luzia, Assis e Toinha Lopes.
+        </p>
+        
+        <button class="bg-[#ffdea8] hover:bg-primary text-background font-label-bold text-label-bold px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all w-full sm:w-auto" onclick="showPopup('Samba de Coco', 'Ritmo ancestral considerado Patrimônio Cultural Imaterial pelo IPHAN.')">
+          Conhecer História <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div class="glass rounded-xl p-4 flex items-center gap-4 border border-surface-container-highest">
+          <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center flex-shrink-0 text-primary">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">piano</span>
+          </div>
+          <div>
+            <h4 class="font-label-bold text-on-surface font-bold text-base">Forró Pé de Serra</h4>
+            <p class="text-on-surface-variant text-label-sm mt-0.5">O autêntico forró com sanfona de oito baixos, zabumba e triângulo mantém a raiz de Luiz Gonzaga viva.</p>
+          </div>
+        </div>
+
+        <div class="glass rounded-xl p-4 flex items-center gap-4 border border-surface-container-highest">
+          <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center flex-shrink-0 text-primary">
+            <span class="material-symbols-outlined">theater_comedy</span>
+          </div>
+          <div>
+            <h4 class="font-label-bold text-on-surface font-bold text-base">Folguedos Locais</h4>
+            <p class="text-on-surface-variant text-label-sm mt-0.5">Manifestações do Maracatu Rural com seus Caboclos de Lança e o teatro popular do Cavalo-Marinho.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 cordel-box rounded-xl p-5">
+        <span class="material-symbols-outlined text-secondary mb-1" style="font-variation-settings:'FILL' 1;">format_quote</span>
+        <blockquote class="font-headline-md text-headline-md text-on-surface italic leading-relaxed text-xl">
+          "No Sertão de Arcoverde toda pedra tem um tom. A sanfona é a voz do vento, o zabumba é o coração."
+        </blockquote>
+        <p class="font-label-sm text-[11px] text-on-surface-variant mt-2 uppercase tracking-wider">— Cordel popular arcoverdense</p>
+      </div>
+    </div>
+
+    <div class="content-panel" id="panel-marcos">
+      <div class="mb-6">
+        <h3 class="font-headline-lg text-headline-lg text-on-surface mb-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">location_city</span>
+          Pontos Históricos
+        </h3>
+        <p class="text-on-surface-variant text-body-md">Os lugares que contam a história da cidade com pedra e cal.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <article class="marco-card glass rounded-xl border border-surface-container-highest p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">church</span>
+              <h4 class="font-headline-md text-on-surface text-lg font-bold">Igreja Matriz de N.ª S.ª das Dores</h4>
+            </div>
+            <p class="text-on-surface-variant text-body-md text-sm leading-relaxed">Construída no século XIX, é o coração espiritual do município e ponto de convergência de fiéis e tradicionais festeiros juninos.</p>
+          </div>
+          <span class="text-secondary font-label-sm text-[11px] uppercase tracking-wider mt-3 block">📍 Centro Histórico</span>
+        </article>
+
+        <article class="marco-card glass rounded-xl border border-surface-container-highest p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;">water</span>
+              <h4 class="font-headline-md text-on-surface text-lg font-bold">Açude da Farinha</h4>
+            </div>
+            <p class="text-on-surface-variant text-body-md text-sm leading-relaxed">Reservatório histórico que serviu de fonte de vida para gerações. É um símbolo forte da resistência sertaneja contra as secas hídricas.</p>
+          </div>
+          <span class="text-secondary font-label-sm text-[11px] uppercase tracking-wider mt-3 block">📍 Zona Norte</span>
+        </article>
+
+        <article class="marco-card glass rounded-xl border border-surface-container-highest p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">village</span>
+              <h4 class="font-headline-md text-on-surface text-lg font-bold">Vila de Cimbres</h4>
+            </div>
+            <p class="text-on-surface-variant text-body-md text-sm leading-relaxed">Distrito histórico mais antigo, berço do Cardeal Arcoverde. Abriga ricas paisagens serranas e caminhos de romarias seculares.</p>
+          </div>
+          <span class="text-secondary font-label-sm text-[11px] uppercase tracking-wider mt-3 block">📍 Distrito de Cimbres</span>
+        </article>
+
+        <article class="marco-card glass rounded-xl border border-surface-container-highest p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;">museum</span>
+              <h4 class="font-headline-md text-on-surface text-lg font-bold">Casa da Cultura</h4>
+            </div>
+            <p class="text-on-surface-variant text-body-md text-sm leading-relaxed">Espaço cultural focado na difusão artística local. Sedia belas exposições de xilogravura, artesanato em couro e barro regional.</p>
+          </div>
+          <span class="text-secondary font-label-sm text-[11px] uppercase tracking-wider mt-3 block">📍 Centro da Cidade</span>
+        </article>
+      </div>
+    </section>
+
+    <div class="content-panel" id="panel-arte">
+      <div class="mb-6">
+        <h3 class="font-headline-lg text-headline-lg text-on-surface mb-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">auto_stories</span>
+          Literatura de Cordel
+        </h3>
+        <p class="text-on-surface-variant text-body-md">A identidade visual e poética gravada em madeira, couro e rimas.</p>
+      </div>
+
+      <div class="glass-orange rounded-2xl border border-secondary/35 p-6 shadow-xl mb-6">
+        <div class="flex items-center gap-2 text-secondary mb-3">
+          <span class="material-symbols-outlined">menu_book</span>
+          <span class="font-label-bold text-label-sm uppercase tracking-widest">Poesia Impressa</span>
+        </div>
+
+        <blockquote class="cordel-box rounded-xl p-5 mb-4 bg-[#0c1b36]/60">
+          <p class="font-headline-lg text-headline-lg text-on-surface italic leading-relaxed text-2xl">
+            "Arcoverde é poesia,<br/>
+            Escrita em cada portão.<br/>
+            Onde o coco e a sanfona,<br/>
+            São os donos do sertão."
+          </p>
+        </blockquote>
+
+        <p class="text-on-surface-variant text-body-md leading-relaxed mb-5">
+          Descubba os folhetos que narram as lendas de Arcoverde, desde os antigos tropeiros até as festas de hoje. Os poetas repentistas mantêm viva a tradição da oralidade improvisada em rimas ricas.
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-[#1c263d] text-on-surface-variant font-label-sm text-xs px-3 py-1.5 rounded-full border border-surface-container-highest">#Xilogravura</span>
+          <span class="bg-[#1c263d] text-on-surface-variant font-label-sm text-xs px-3 py-1.5 rounded-full border border-surface-container-highest">#Oralidade</span>
+          <span class="bg-[#1c263d] text-on-surface-variant font-label-sm text-xs px-3 py-1.5 rounded-full border border-surface-container-highest">#Ancestralidade</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="glass rounded-xl p-4 border border-surface-container-highest">
+          <h4 class="font-label-bold text-primary font-bold text-base uppercase tracking-wider mb-1">Xilogravura</h4>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Arte milenar de entalhar matrizes de madeira para ilustrar as famosas capas dos livretos de cordel locais.</p>
+        </div>
+        <div class="glass rounded-xl p-4 border border-surface-container-highest">
+          <h4 class="font-label-bold text-primary font-bold text-base uppercase tracking-wider mb-1">Couro e Cerâmica</h4>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Gibões, chapéus de couro e estatuetas de barro moldadas pelos grandes mestres artesãos do Sertão.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-panel" id="panel-gastronomia">
+      <div class="mb-6">
+        <h3 class="font-headline-lg text-headline-lg text-on-surface mb-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">restaurant</span>
+          Sabores do Sertão
+        </h3>
+        <p class="text-on-surface-variant text-body-md">A culinária típica de Arcoverde que aquece o corpo e a alma.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="glass rounded-xl p-4 border border-surface-container-highest">
+          <span class="text-2xl block mb-1">🌽</span>
+          <h4 class="font-label-bold text-on-surface font-bold text-base mb-1">Canjica & Pamonha</h4>
+          <p class="text-on-surface-variant text-sm">O sabor mais tradicional do ciclo junino, feito com milho verde fresco ralado e especiarias.</p>
+        </div>
+
+        <div class="glass rounded-xl p-4 border border-surface-container-highest">
+          <span class="text-2xl block mb-1">🥩</span>
+          <h4 class="font-label-bold text-on-surface font-bold text-base mb-1">Carne de Sol com Macaxeira</h4>
+          <p class="text-on-surface-variant text-sm">Cura artesanal servida com bastante manteiga de garrafa e macaxeira cozida derretendo.</p>
+        </div>
+
+        <div class="glass rounded-xl p-4 border border-surface-container-highest">
+          <span class="text-2xl block mb-1">🌵</span>
+          <h4 class="font-label-bold text-on-surface font-bold text-base mb-1">Umbuzada Nordestina</h4>
+          <p class="text-on-surface-variant text-sm">Bebida cremosa feita com a polpa do umbu, fruto sagrado da caatinga, misturada com leite.</p>
+        </div>
+
+        <div class="glass rounded-xl p-4 border border-surface-container-highest">
+          <span class="text-2xl block mb-1">🫓</span>
+          <h4 class="font-label-bold text-on-surface font-bold text-base mb-1">Queijo Coalho Assado</h4>
+          <p class="text-on-surface-variant text-sm">O tradicional queijo regional feito por produtores locais, tostado na chapa ou na brasa de carvão.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50 flex justify-around items-center px-2 py-3 bg-surface-container-high/90 backdrop-blur-xl border border-primary/20 rounded-[32px] shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:hidden">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="agenda.html">
+      <span class="material-symbols-outlined">calendar_month</span>
+      <span class="font-label-sm text-[10px] mt-1">Agenda</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="#">
+      <span class="material-symbols-outlined">map</span>
+      <span class="font-label-sm text-[10px] mt-1">Mapa</span>
+    </a>
+    <a class="flex flex-col items-center justify-center bg-surface-container border border-surface-variant text-on-surface-variant rounded-full w-14 h-14 -mt-6 shadow-md transition-all active:scale-95" href="index.html">
+      <span class="material-symbols-outlined">home</span>
+      <span class="font-label-sm text-[9px]">Início</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary flex-1 transition-all active:scale-90" href="cultural.html">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">theater_comedy</span>
+      <span class="font-label-sm text-[10px] mt-1 font-bold">Cultural</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="perfil.html">
+      <span class="material-symbols-outlined">person</span>
+      <span class="font-label-sm text-[10px] mt-1">Perfil</span>
+    </a>
+  </nav>
+
+  <script src="js/app.js"></script>
+  
+  <script>
+    document.querySelectorAll('.cat-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.cat-tab').forEach(t => {
+          t.classList.remove('active', 'text-primary');
+          t.classList.add('text-on-surface-variant');
+        });
+        tab.classList.add('active', 'text-primary');
+        tab.classList.remove('text-on-surface-variant');
+
+        document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('panel-' + tab.dataset.panel);
+        if (target) {
+          target.classList.add('active');
+          target.querySelectorAll('.fade-up').forEach(el => {
+            el.style.animation = 'none';
+            el.offsetHeight; // force reflow
+            el.style.animation = '';
+          });
+        }
+      });
+    });
+
+    function showPopup(title, text) {
+      alert(`${title}\n\n${text}`);
+    }
+  </script>
+</body>
+</html>

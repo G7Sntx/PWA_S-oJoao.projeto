@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>São João Vivo - Agenda</title>
-  
+
   <!-- TAGS DO PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#040b1a">
@@ -14,29 +14,265 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Newsreader:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-  <!-- SEU CSS PERSONALIZADO -->
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- TAILWIND CSS VIA CDN E ARQUIVO DE CONFIGURAÇÃO -->
+  <!-- TAILWIND CSS VIA CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script src="js/tailwind-config.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#FFB800",
+            "secondary": "#E35205",
+            "background": "#040b1a",
+            "surface": "#040b1a",
+            "surface-dim": "#040b1a",
+            "surface-bright": "#1f2a41",
+            "surface-variant": "#1c263d",
+            "surface-container-lowest": "#020814",
+            "surface-container-low": "#0a162b",
+            "surface-container": "#0c1b36",
+            "surface-container-high": "#152445",
+            "surface-container-highest": "#1c263d",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-background": "#fdf8ef",
+            "on-surface": "#fdf8ef",
+            "on-surface-variant": "#d5c4ab",
+            "on-primary-container": "#ffffff",
+            "on-secondary-container": "#ffffff",
+            "primary-container": "#E35205",
+            "secondary-container": "#8b0000",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "on-error": "#690005",
+            "on-error-container": "#ffdad6",
+            "primary-fixed": "#ffdea8",
+            "primary-fixed-dim": "#FFB800",
+            "secondary-fixed": "#ffdbd1",
+            "secondary-fixed-dim": "#E35205",
+            "tertiary": "#e1e1e1",
+            "tertiary-fixed-dim": "#b0b8c8",
+            "outline": "#514532",
+            "outline-variant": "#413626"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "20px",
+            "xl": "64px",
+            "sm": "12px",
+            "md": "24px",
+            "xs": "4px",
+            "gutter": "16px",
+            "base": "8px",
+            "lg": "40px"
+          },
+          fontFamily: {
+            "headline-lg": ["Newsreader"],
+            "headline-xl": ["Newsreader"],
+            "label-bold": ["Be Vietnam Pro"],
+            "body-lg": ["Be Vietnam Pro"],
+            "headline-md": ["Newsreader"],
+            "body-md": ["Be Vietnam Pro"],
+            "label-sm": ["Be Vietnam Pro"]
+          },
+          fontSize: {
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "headline-xl": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+            "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+      background: linear-gradient(to bottom, #040b1a, #081329);
+    }
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    .hide-scrollbar::-webkit-scrollbar,
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar, .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .glow-yellow { box-shadow: 0 0 15px rgba(255, 184, 0, 0.4); }
+    .glow-orange { box-shadow: 0 0 15px rgba(227, 82, 5, 0.4); }
+    .glow-orange-strong { box-shadow: 0 4px 20px rgba(227, 82, 5, 0.3); }
+    .bunting-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 20,20 40,0' fill='%23ffb5a0'/%3E%3Cpolygon points='0,0 10,10 20,0' fill='%23ffba20'/%3E%3Cpolygon points='20,0 30,10 40,0' fill='%23ffdca1'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      height: 20px;
+      width: 100%;
+      display: block;
+    }
+
+    /* Timeline */
+    .timeline-line {
+      border-left: 2px dashed #1c263d;
+    }
+    .timeline-dot-yellow {
+      width: 20px; height: 20px;
+      background: #FFB800;
+      border: 2px solid #040b1a;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255,184,0,0.6);
+      position: absolute;
+      left: -11px;
+      top: 0;
+      flex-shrink: 0;
+    }
+    .timeline-dot-orange {
+      width: 20px; height: 20px;
+      background: #E35205;
+      border: 2px solid #040b1a;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(227,82,5,0.8);
+      position: absolute;
+      left: -11px;
+      top: 0;
+      flex-shrink: 0;
+    }
+
+    /* Card hover */
+    .event-card {
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .event-card:hover {
+      border-color: rgba(255,184,0,0.4);
+      transform: translateY(-1px);
+    }
+    .event-card-highlight {
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .event-card-highlight:hover { transform: translateY(-1px); }
+
+    /* Favorite button */
+    .fav-btn { transition: color 0.15s, transform 0.15s; cursor: pointer; }
+    .fav-btn:hover { color: #E35205; transform: scale(1.15); }
+    .fav-btn.active { color: #E35205; }
+    .fav-btn.active .fav-icon::before { content: 'favorite'; }
+
+    /* Day tab */
+    .day-tab { transition: all 0.2s ease; }
+    .day-tab.active {
+      background: #FFB800;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(255,184,0,0.4);
+    }
+    .day-tab:not(.active):hover { border-color: rgba(255,184,0,0.4); color: #fdf8ef; }
+
+    /* Filter modal overlay */
+    #filter-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(4,11,26,0.85);
+      backdrop-filter: blur(4px);
+      align-items: flex-end;
+      justify-content: center;
+    }
+    #filter-overlay.open { display: flex; }
+    #filter-modal {
+      background: #0c1b36;
+      border: 1px solid #1c263d;
+      border-radius: 24px 24px 0 0;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px 20px 40px;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .filter-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 9999px;
+      border: 1px solid #1c263d;
+      background: #0a162b;
+      color: #d5c4ab;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .filter-chip:hover { border-color: rgba(255,184,0,0.4); color: #fdf8ef; }
+    .filter-chip.active {
+      background: #FFB800; color: #040b1a;
+      border-color: #FFB800;
+    }
+
+    /* Search bar */
+    .search-input {
+      background: #0a162b;
+      border: 1px solid #1c263d;
+      border-radius: 12px;
+      color: #fdf8ef;
+      padding: 10px 16px 10px 42px;
+      width: 100%;
+      outline: none;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: rgba(255,184,0,0.5); }
+    .search-input::placeholder { color: #514532; }
+
+    /* Empty state */
+    #empty-state { display: none; }
+
+    /* Card "Ao Vivo" pulse */
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      background: #ffb4ab; border-radius: 50%;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+      display: inline-block;
+    }
+  </style>
 </head>
 
 <body class="bg-background text-on-background font-body-md min-h-screen pb-24 md:pb-0 pt-16 md:pt-20 selection:bg-primary-container selection:text-on-primary-container">
-  
+
   <!-- TopAppBar -->
   <header class="fixed top-0 left-0 w-full z-40 bg-surface-container/90 backdrop-blur-md border-b border-surface-container-highest shadow-xl flex justify-between items-center px-margin py-sm h-16 md:h-20">
     <button aria-label="Menu" class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">
       <span class="material-symbols-outlined">menu</span>
     </button>
     <h1 class="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary drop-shadow-[0_2px_4px_rgba(227,82,5,0.3)]">SÃO JOÃO VIVO</h1>
-    
-    <!-- Web Nav (Agenda Ativa) -->
+
+    <!-- Web Nav -->
     <nav class="hidden md:flex items-center gap-6">
       <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="index.html">Início</a>
       <a class="font-label-bold text-label-bold text-primary font-bold hover:bg-surface-container-high px-3 py-2 rounded-md transition-colors" href="agenda.html">Agenda</a>
       <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="#">Mapa</a>
-      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="#">Perfil</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="perfil.html">Perfil</a>
     </nav>
 
     <button aria-label="Notificações" class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
@@ -45,82 +281,208 @@
     </button>
   </header>
 
-  <!-- Main Content Canvas -->
-  <main class="max-w-7xl mx-auto px-margin">
-    
-    <!-- Cabeçalho da Página e Filtro de Dias -->
+  <!-- Main -->
+  <main class="max-w-4xl mx-auto px-margin">
+
+    <!-- Cabeçalho + Filtro -->
     <section class="py-md mt-sm">
-      <div class="flex flex-col gap-4 mb-6">
-        <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">Programação</h2>
-        <p class="text-on-surface-variant text-body-md -mt-2">Não perca nenhuma atração do maior arrraiá da região!</p>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-md border-b border-surface-container-highest">
+        <div>
+          <h2 class="font-headline-xl text-headline-xl font-bold text-on-surface uppercase tracking-tight">Programação</h2>
+          <p class="text-on-surface-variant text-body-md mt-1">Não perca nenhuma atração do maior arraiá da região!</p>
+        </div>
+        <div class="flex gap-3 w-full md:w-auto">
+          <!-- Search -->
+          <div class="relative flex-1 md:w-52">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size:18px;">search</span>
+            <input
+              class="search-input"
+              id="search-input"
+              placeholder="Buscar artista..."
+              type="text"
+            />
+          </div>
+          <!-- Filter Button -->
+          <button
+            id="filter-btn"
+            class="flex items-center gap-2 bg-surface-container-high text-primary border border-primary/30 px-4 py-2 rounded-lg font-label-bold text-label-bold hover:bg-primary hover:text-on-primary transition-all glow-orange shrink-0"
+          >
+            <span class="material-symbols-outlined" style="font-size:18px;">tune</span>
+            FILTRAR
+          </button>
+        </div>
       </div>
 
-      <!-- Seleção de Datas Corrediça -->
-      <div class="flex gap-sm overflow-x-auto hide-scrollbar py-2 snap-x">
-        <button class="snap-start shrink-0 bg-primary text-on-primary font-label-bold text-label-bold px-5 py-3 rounded-full uppercase shadow-md transition-all">
-          Sex, 22 Jun
+      <!-- Seleção de Dias -->
+      <div class="flex gap-sm overflow-x-auto hide-scrollbar py-2 snap-x" id="day-tabs">
+        <button class="day-tab active snap-start shrink-0 flex flex-col items-center justify-center px-6 py-3 rounded-lg border border-transparent" data-day="20">
+          <span class="font-label-bold text-label-bold uppercase text-[11px]">Qui</span>
+          <span class="font-headline-md text-headline-md font-bold text-xl">20</span>
         </button>
-        <button class="snap-start shrink-0 bg-surface-container-low border border-surface-variant text-on-surface-variant font-label-bold text-label-bold px-5 py-3 rounded-full uppercase hover:border-primary/40 transition-all">
-          Sáb, 23 Jun
+        <button class="day-tab snap-start shrink-0 flex flex-col items-center justify-center bg-surface-container-low text-on-surface-variant border border-surface-container-highest px-6 py-3 rounded-lg" data-day="21">
+          <span class="font-label-bold text-label-bold uppercase text-[11px]">Sex</span>
+          <span class="font-headline-md text-headline-md font-bold text-xl">21</span>
         </button>
-        <button class="snap-start shrink-0 bg-surface-container-low border border-surface-variant text-on-surface-variant font-label-bold text-label-bold px-5 py-3 rounded-full uppercase hover:border-primary/40 transition-all">
-          Dom, 24 Jun
+        <button class="day-tab snap-start shrink-0 flex flex-col items-center justify-center bg-surface-container-low text-on-surface-variant border border-surface-container-highest px-6 py-3 rounded-lg" data-day="22">
+          <span class="font-label-bold text-label-bold uppercase text-[11px]">Sáb</span>
+          <span class="font-headline-md text-headline-md font-bold text-xl">22</span>
         </button>
-        <button class="snap-start shrink-0 bg-surface-container-low border border-surface-variant text-on-surface-variant font-label-bold text-label-bold px-5 py-3 rounded-full uppercase hover:border-primary/40 transition-all">
-          Seg, 25 Jun
+        <button class="day-tab snap-start shrink-0 flex flex-col items-center justify-center bg-surface-container-low text-on-surface-variant border border-surface-container-highest px-6 py-3 rounded-lg" data-day="23">
+          <span class="font-label-bold text-label-bold uppercase text-[11px]">Dom</span>
+          <span class="font-headline-md text-headline-md font-bold text-xl">23</span>
+        </button>
+        <button class="day-tab snap-start shrink-0 flex flex-col items-center justify-center bg-surface-container-low text-on-surface-variant border border-surface-container-highest px-6 py-3 rounded-lg" data-day="24">
+          <span class="font-label-bold text-label-bold uppercase text-[11px]">Seg</span>
+          <span class="font-headline-md text-headline-md font-bold text-xl">24</span>
         </button>
       </div>
     </section>
 
-    <!-- Lista Cronológica da Programação -->
-    <section class="py-sm flex flex-col gap-gutter mb-12">
-      
-      <!-- Bloco de Evento 1 (Ao Vivo) -->
-      <article class="bg-surface-container-low border border-primary/40 rounded-xl flex flex-col md:flex-row overflow-hidden group hover:border-primary transition-colors relative">
-        <div class="bg-error text-on-error font-label-bold text-label-sm px-3 py-1 uppercase absolute top-3 left-3 rounded-full z-10 shadow-md md:hidden">Ao Vivo</div>
-        <div class="h-44 md:h-auto md:w-64 bg-surface-variant shrink-0 relative" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANH2HV0esZg8yp_NQJnvkGrcS2nOZMA3iJPGYfnmaUN2SOXOdYHQ-X_2rwypTAyzHspm--t8mTa48juKHd-SIr-OqtUNpdp3WklXwR_DiTJoFwDfUKLXGghH8idTCZko_rbiEHYITqL0C3I8RD7ebrGt766w2i8gw7eR2kXw3JyhLeGTEvDuVJ1kWTGFAJs1VIBcRaQIX_-gsVckxG5Ule_i3GTiGwP-RvCI2vqLF2Jojdp0vF2sjD1izuYcaw9nXql6FMvK3900Ro'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-surface-container-low to-transparent"></div>
-        </div>
-        <div class="p-5 flex-1 flex flex-col justify-between gap-4">
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="bg-surface-bright text-on-surface px-3 py-0.5 rounded-full border border-surface-variant font-label-sm text-label-sm uppercase">Forró</span>
-              <span class="hidden md:inline-block bg-error text-on-error font-label-bold text-label-bold px-3 py-1 rounded-full uppercase shadow-[0_0_10px_rgba(255,180,171,0.5)]">Ao Vivo</span>
-            </div>
-            <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-2 group-hover:text-primary transition-colors">Trio Pé de Serra</h3>
-            <p class="text-on-surface-variant text-body-md mt-1 line-clamp-2">O autêntico forró pé de serra para levantar a poeira e dançar coladinho a noite inteira.</p>
-          </div>
-          <div class="flex flex-wrap gap-x-6 gap-y-2 border-t border-surface-variant/40 pt-3">
-            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary">location_on</span>Palco Principal</div>
-            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary">schedule</span>20:00 - 22:00</div>
-          </div>
-        </div>
-      </article>
+    <!-- Timeline de Eventos -->
+    <section class="py-sm mb-16 space-y-8" id="timeline">
 
-      <!-- Bloco de Evento 2 -->
-      <article class="bg-surface-container-low border border-surface-variant rounded-xl flex flex-col md:flex-row overflow-hidden group hover:border-primary/50 transition-colors relative">
-        <div class="h-44 md:h-auto md:w-64 bg-surface-variant shrink-0 relative" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmGVId9_DvsYC25j1v_gLUOy0nM2EiBLTa0TJNGT_mz3KbF5DYtgfOEZsQc2b0xa7QDP5V0PCd-D9dvgk8AvtFKU_iPczTRpHtMS-vSeP9iK-tdX1N0tzfZVBXqgvxgkaUJBm0Weu_tuuUApRjfDfdkU4GsmO3a8frjgkqDF000Lzril_JDD4pUdR1-f4CapV-38X3Z6f8ga_LZx8ZK-1G9MqTR4TByZzLdy4xCTJyluAF8XgqoggZt-ZvUqlz6e56MTAM8ViGd0pm'); background-size: cover; background-position: center;">
-          <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-surface-container-low to-transparent"></div>
-        </div>
-        <div class="p-5 flex-1 flex flex-col justify-between gap-4">
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="bg-surface-bright text-on-surface px-3 py-0.5 rounded-full border border-surface-variant font-label-sm text-label-sm uppercase">Quadrilha</span>
+      <!-- ── 18:00 ── -->
+      <div class="relative pl-8 md:pl-32 timeline-line" data-category="forró pé de serra" data-artist="trio nordestino">
+        <div class="timeline-dot-yellow"></div>
+        <div class="hidden md:block absolute left-4 top-[-4px] font-headline-md text-headline-md text-primary font-bold">18:00</div>
+        <div class="md:hidden font-headline-md text-headline-md text-primary font-bold mb-4">18:00</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Card -->
+          <article class="event-card bg-surface-container-low border border-surface-container-highest rounded-xl p-4 flex flex-col">
+            <div class="flex justify-between items-start mb-2">
+              <span class="bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm px-3 py-1 rounded-full uppercase">Forró Pé de Serra</span>
+              <button class="fav-btn text-on-surface-variant" onclick="toggleFav(this)" aria-label="Favoritar">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+              </button>
             </div>
-            <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-2 group-hover:text-primary transition-colors">Flor do Sertão</h3>
-            <p class="text-on-surface-variant text-body-md mt-1 line-clamp-2">Apresentação especial da quadrilha estilizada campeã regional, trazendo cores, sincronia e muita emoção.</p>
-          </div>
-          <div class="flex flex-wrap gap-x-6 gap-y-2 border-t border-surface-variant/40 pt-3">
-            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">location_on</span>Arena das Tradições</div>
-            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">schedule</span>22:30 - 23:30</div>
-          </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">Trio Nordestino</h3>
+            <p class="text-on-surface-variant text-body-md text-sm mb-3 line-clamp-2">Forró raiz de verdade, com sanfona, zabumba e triângulo pra não deixar ninguém parado.</p>
+            <div class="flex items-center gap-1 text-on-surface-variant text-sm mt-auto">
+              <span class="material-symbols-outlined text-secondary" style="font-size:16px;">location_on</span>
+              <span>Palco Raízes</span>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
+
+      <!-- ── 20:00 — DESTAQUE Quadrilha ── -->
+      <div class="relative pl-8 md:pl-32 timeline-line" data-category="quadrilha" data-artist="arraiá do gonzagão">
+        <div class="timeline-dot-orange"></div>
+        <div class="hidden md:block absolute left-4 top-[-4px] font-headline-md text-headline-md text-secondary font-bold">20:00</div>
+        <div class="md:hidden font-headline-md text-headline-md text-secondary font-bold mb-4">20:00</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Card Destaque -->
+          <article class="event-card-highlight bg-surface-container-high border border-secondary/50 rounded-xl p-4 flex flex-col relative overflow-hidden glow-orange-strong md:col-span-2">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary via-primary to-secondary"></div>
+            <div class="flex justify-between items-start mb-2 mt-1">
+              <span class="bg-secondary text-on-secondary font-label-sm text-label-sm px-3 py-1 rounded-full uppercase flex items-center gap-2">
+                <span class="material-symbols-outlined" style="font-size:14px; font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                Quadrilha
+              </span>
+              <button class="fav-btn text-on-surface" onclick="toggleFav(this)" aria-label="Favoritar">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+              </button>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">Arraiá do Gonzagão</h3>
+            <p class="text-on-surface-variant text-body-md mb-4 line-clamp-2">Apresentação especial com mais de 50 componentes e tema "Sertão em Festa".</p>
+            <div class="flex flex-wrap gap-4 mt-auto">
+              <div class="flex items-center gap-1 text-primary font-bold text-sm">
+                <span class="material-symbols-outlined text-secondary" style="font-size:16px;">location_on</span>
+                Arena das Quadrilhas
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant text-sm">
+                <span class="material-symbols-outlined" style="font-size:16px;">people</span>
+                50+ componentes
+              </div>
+              <div class="flex items-center gap-2 text-on-surface-variant text-sm">
+                <span class="material-symbols-outlined" style="font-size:16px;">schedule</span>
+                20:00 – 21:30
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ── 22:00 ── -->
+      <div class="relative pl-8 md:pl-32 timeline-line" data-category="piseiro forró eletrônico" data-artist="joão gomes calcinha preta">
+        <div class="timeline-dot-yellow"></div>
+        <div class="hidden md:block absolute left-4 top-[-4px] font-headline-md text-headline-md text-primary font-bold">22:00</div>
+        <div class="md:hidden font-headline-md text-headline-md text-primary font-bold mb-4">22:00</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- João Gomes -->
+          <article class="event-card bg-surface-container-low border border-surface-container-highest rounded-xl p-4 flex flex-col">
+            <div class="flex justify-between items-start mb-2">
+              <span class="bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm px-3 py-1 rounded-full uppercase">Piseiro</span>
+              <button class="fav-btn text-on-surface-variant" onclick="toggleFav(this)" aria-label="Favoritar">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+              </button>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">João Gomes</h3>
+            <p class="text-on-surface-variant text-body-md text-sm mb-3 line-clamp-2">O fenômeno do piseiro nordestino que conquistou o Brasil com seus hits inconfundíveis.</p>
+            <div class="flex items-center gap-1 text-on-surface-variant text-sm mt-auto">
+              <span class="material-symbols-outlined text-secondary" style="font-size:16px;">location_on</span>
+              <span>Palco Principal</span>
+            </div>
+          </article>
+          <!-- Calcinha Preta -->
+          <article class="event-card bg-surface-container-low border border-surface-container-highest rounded-xl p-4 flex flex-col">
+            <div class="flex justify-between items-start mb-2">
+              <span class="bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm px-3 py-1 rounded-full uppercase">Forró Eletrônico</span>
+              <button class="fav-btn text-on-surface-variant" onclick="toggleFav(this)" aria-label="Favoritar">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+              </button>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">Calcinha Preta</h3>
+            <p class="text-on-surface-variant text-body-md text-sm mb-3 line-clamp-2">Clássico do forró eletrônico baiano que nunca sai de moda nas festas juninas.</p>
+            <div class="flex items-center gap-1 text-on-surface-variant text-sm mt-auto">
+              <span class="material-symbols-outlined text-secondary" style="font-size:16px;">location_on</span>
+              <span>Palco Alternativo</span>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ── 00:00 ── -->
+      <div class="relative pl-8 md:pl-32 timeline-line pb-8" data-category="sertanejo" data-artist="gusttavo lima">
+        <div class="timeline-dot-yellow"></div>
+        <div class="hidden md:block absolute left-4 top-[-4px] font-headline-md text-headline-md text-primary font-bold">00:00</div>
+        <div class="md:hidden font-headline-md text-headline-md text-primary font-bold mb-4">00:00</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Gusttavo Lima -->
+          <article class="event-card bg-surface-container-low border border-surface-container-highest rounded-xl p-4 flex flex-col">
+            <div class="flex justify-between items-start mb-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm px-3 py-1 rounded-full uppercase">Sertanejo</span>
+                <span class="flex items-center gap-1 bg-error/20 text-error font-label-sm text-label-sm px-2 py-1 rounded-full uppercase">
+                  <span class="live-dot"></span> Ao Vivo
+                </span>
+              </div>
+              <button class="fav-btn text-on-surface-variant" onclick="toggleFav(this)" aria-label="Favoritar">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+              </button>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">Gusttavo Lima</h3>
+            <p class="text-on-surface-variant text-body-md text-sm mb-3 line-clamp-2">O Embaixador encerra a noite com o melhor do sertanejo universitário.</p>
+            <div class="flex items-center gap-1 text-on-surface-variant text-sm mt-auto">
+              <span class="material-symbols-outlined text-secondary" style="font-size:16px;">location_on</span>
+              <span>Palco Principal</span>
+            </div>
+          </article>
+        </div>
+      </div>
 
     </section>
+
+    <!-- Estado vazio (busca sem resultado) -->
+    <div id="empty-state" class="flex flex-col items-center justify-center py-24 text-center">
+      <span class="material-symbols-outlined text-on-surface-variant mb-4" style="font-size:48px;">search_off</span>
+      <p class="font-headline-md text-headline-md text-on-surface-variant">Nenhum resultado encontrado</p>
+      <p class="text-body-md text-on-surface-variant mt-2 opacity-60">Tente outro nome ou categoria</p>
+    </div>
+
   </main>
 
-  <!-- BottomNavBar (Agenda Ativa no Mobile) -->
+  <!-- BottomNavBar (Mobile Only) -->
   <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50 flex justify-around items-center px-2 py-3 bg-surface-container-high/90 backdrop-blur-xl border border-primary/20 rounded-[32px] shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:hidden">
     <a class="flex flex-col items-center justify-center text-primary flex-1 transition-all active:scale-90" href="agenda.html">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
@@ -134,17 +496,155 @@
       <span class="material-symbols-outlined">home</span>
       <span class="font-label-sm text-[9px]">Início</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="#">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="cultural.html">
       <span class="material-symbols-outlined">theater_comedy</span>
       <span class="font-label-sm text-[10px] mt-1">Cultural</span>
     </a>
-    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="#">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="perfil.html">
       <span class="material-symbols-outlined">person</span>
       <span class="font-label-sm text-[10px] mt-1">Perfil</span>
     </a>
   </nav>
 
-  <!-- SCRIPT PWA NO FIM DO BODY -->
+  <!-- ── Modal de Filtro ── -->
+  <div id="filter-overlay" role="dialog" aria-modal="true" aria-label="Filtrar programação">
+    <div id="filter-modal">
+      <!-- Handle -->
+      <div class="w-10 h-1 bg-surface-container-highest rounded-full mx-auto mb-6"></div>
+      <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-6">Filtrar Programação</h3>
+
+      <!-- Categoria -->
+      <p class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-3">Categoria</p>
+      <div class="flex flex-wrap gap-2 mb-6" id="chip-category">
+        <button class="filter-chip active" data-filter="all">Todos</button>
+        <button class="filter-chip" data-filter="forró pé de serra">Forró Pé de Serra</button>
+        <button class="filter-chip" data-filter="forró eletrônico">Forró Eletrônico</button>
+        <button class="filter-chip" data-filter="quadrilha">Quadrilha</button>
+        <button class="filter-chip" data-filter="piseiro">Piseiro</button>
+        <button class="filter-chip" data-filter="sertanejo">Sertanejo</button>
+      </div>
+
+      <!-- Palco -->
+      <p class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-3">Palco</p>
+      <div class="flex flex-wrap gap-2 mb-8" id="chip-stage">
+        <button class="filter-chip active" data-stage="all">Todos</button>
+        <button class="filter-chip" data-stage="palco principal">Palco Principal</button>
+        <button class="filter-chip" data-stage="palco raízes">Palco Raízes</button>
+        <button class="filter-chip" data-stage="palco alternativo">Palco Alternativo</button>
+        <button class="filter-chip" data-stage="arena das quadrilhas">Arena das Quadrilhas</button>
+      </div>
+
+      <!-- Botões -->
+      <div class="flex gap-3">
+        <button id="filter-clear" class="flex-1 py-3 rounded-xl border border-surface-container-highest text-on-surface-variant font-label-bold text-label-bold hover:border-primary/40 transition-colors">
+          Limpar
+        </button>
+        <button id="filter-apply" class="flex-1 py-3 rounded-xl bg-primary text-on-primary font-label-bold text-label-bold glow-yellow hover:opacity-90 transition-opacity">
+          Aplicar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PWA -->
   <script src="js/app.js"></script>
+
+  <script>
+    // ── Favoritos ──────────────────────────────────────────────
+    function toggleFav(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('.fav-icon');
+      icon.textContent = btn.classList.contains('active') ? 'favorite' : 'favorite_border';
+    }
+
+    // ── Tabs de dia ────────────────────────────────────────────
+    document.querySelectorAll('.day-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.day-tab').forEach(t => {
+          t.classList.remove('active');
+          t.classList.add('bg-surface-container-low', 'text-on-surface-variant', 'border-surface-container-highest');
+          t.style.boxShadow = '';
+        });
+        tab.classList.add('active');
+        tab.classList.remove('bg-surface-container-low', 'text-on-surface-variant', 'border-surface-container-highest');
+      });
+    });
+
+    // ── Busca ao vivo ──────────────────────────────────────────
+    const searchInput = document.getElementById('search-input');
+    const timelineBlocks = document.querySelectorAll('#timeline > div[data-artist]');
+    const emptyState = document.getElementById('empty-state');
+
+    function filterTimeline() {
+      const query = searchInput.value.toLowerCase().trim();
+      let anyVisible = false;
+      timelineBlocks.forEach(block => {
+        const artist = block.dataset.artist || '';
+        const category = block.dataset.category || '';
+        const match = !query || artist.includes(query) || category.includes(query);
+        block.style.display = match ? '' : 'none';
+        if (match) anyVisible = true;
+      });
+      emptyState.style.display = anyVisible ? 'none' : 'flex';
+    }
+
+    searchInput.addEventListener('input', filterTimeline);
+
+    // ── Modal de Filtro ────────────────────────────────────────
+    const overlay = document.getElementById('filter-overlay');
+    document.getElementById('filter-btn').addEventListener('click', () => overlay.classList.add('open'));
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+
+    // Chips de categoria
+    document.querySelectorAll('#chip-category .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#chip-category .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+
+    // Chips de palco
+    document.querySelectorAll('#chip-stage .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#chip-stage .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+
+    // Limpar filtros
+    document.getElementById('filter-clear').addEventListener('click', () => {
+      document.querySelectorAll('#chip-category .filter-chip, #chip-stage .filter-chip').forEach(c => c.classList.remove('active'));
+      document.querySelector('#chip-category [data-filter="all"]').classList.add('active');
+      document.querySelector('#chip-stage [data-stage="all"]').classList.add('active');
+    });
+
+    // Aplicar filtros
+    document.getElementById('filter-apply').addEventListener('click', () => {
+      const catChip = document.querySelector('#chip-category .filter-chip.active');
+      const stageChip = document.querySelector('#chip-stage .filter-chip.active');
+      const cat = catChip ? catChip.dataset.filter : 'all';
+      const stage = stageChip ? stageChip.dataset.stage : 'all';
+
+      let anyVisible = false;
+      timelineBlocks.forEach(block => {
+        const blockCat = block.dataset.category || '';
+        const blockArtist = block.dataset.artist || '';
+
+        // Verificar palco nos filhos
+        const stageTexts = Array.from(block.querySelectorAll('article'))
+          .map(a => a.textContent.toLowerCase());
+
+        const catMatch = cat === 'all' || blockCat.includes(cat);
+        const stageMatch = stage === 'all' || stageTexts.some(t => t.includes(stage));
+
+        const show = catMatch && stageMatch;
+        block.style.display = show ? '' : 'none';
+        if (show) anyVisible = true;
+      });
+
+      emptyState.style.display = anyVisible ? 'none' : 'flex';
+      overlay.classList.remove('open');
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Perfil - São João Vivo</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#040b1a">
+<link rel="icon" href="images/icons/icon-192.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js"></script>
+<style>
+  :root {
+    --primary: #FFB800;
+    --secondary: #E35205;
+    --bg: #030816;
+    --surface: #0e182d;
+    --surface-high: #141e33;
+    --surface-highest: #1c2538;
+    --on-surface: #f0f4ff;
+    --on-surface-variant: #d5c4ab;
+    --outline: #9e8f78;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--on-surface);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,184,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,184,0,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .z-content { position: relative; z-index: 1; }
+
+  .glass {
+    background: rgba(14, 24, 45, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 184, 0, 0.12);
+  }
+
+  .glass-orange {
+    background: rgba(14, 24, 45, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(227, 82, 5, 0.2);
+  }
+
+  .glow-yellow { box-shadow: 0 0 20px rgba(255,184,0,0.45); }
+  .text-glow-yellow { text-shadow: 0 0 12px rgba(255,184,0,0.5); }
+  .text-glow-orange { text-shadow: 0 0 8px rgba(227,82,5,0.6); }
+
+  .avatar-ring {
+    background: conic-gradient(from 0deg, #FFB800, #E35205, #FFB800, #E35205, #FFB800);
+    animation: spin-ring 4s linear infinite;
+    border-radius: 9999px;
+    padding: 3px;
+  }
+  @keyframes spin-ring { to { transform: rotate(360deg); } }
+
+  .bottom-nav {
+    background: rgba(20, 30, 51, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .badge-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .star-filled { color: var(--primary); }
+  .star-empty  { color: rgba(255,184,0,0.2); }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up { animation: slide-up 0.5s ease forwards; opacity: 0; }
+  .delay-1 { animation-delay: 0.05s; }
+  .delay-2 { animation-delay: 0.1s; }
+  .delay-3 { animation-delay: 0.15s; }
+  .delay-4 { animation-delay: 0.2s; }
+  .delay-5 { animation-delay: 0.25s; }
+
+  .hover-lift { transition: transform 0.2s, box-shadow 0.2s; }
+  .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+  #toast {
+    position: fixed;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 100;
+    pointer-events: none;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .toggle-track {
+    width: 44px; height: 24px;
+    background: var(--surface-highest);
+    border-radius: 9999px;
+    border: 1px solid rgba(255,184,0,0.2);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .toggle-track.on { background: rgba(255,184,0,0.25); border-color: var(--primary); }
+  .toggle-thumb {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 16px; height: 16px;
+    border-radius: 9999px;
+    background: var(--outline);
+    transition: transform 0.3s, background 0.3s;
+  }
+  .toggle-track.on .toggle-thumb {
+    transform: translateX(20px);
+    background: var(--primary);
+    box-shadow: 0 0 6px rgba(255,184,0,0.6);
+  }
+</style>
+</head>
+
+<body class="pb-28 md:pb-0 pt-16 md:pt-[76px]">
+
+<!-- TOP APP BAR -->
+<header class="z-content fixed top-0 left-0 w-full z-40 flex justify-between items-center px-5 h-16 md:h-[76px]"
+  style="background: rgba(3,8,22,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,184,0,0.1);">
+  <button aria-label="Menu" class="text-on-surface hover:text-primary p-2 rounded-full transition-colors">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+  <h1 style="font-family: Newsreader, serif; font-size: 22px; font-weight: 700; letter-spacing: 2px;"
+    class="text-primary text-glow-yellow uppercase">SÃO JOÃO VIVO</h1>
+  <button aria-label="Compartilhar perfil" class="text-on-surface hover:text-primary p-2 rounded-full transition-colors" onclick="showToast('Link do perfil copiado!')">
+    <span class="material-symbols-outlined">share</span>
+  </button>
+</header>
+
+<!-- SIDE NAV (desktop) -->
+<nav class="z-content hidden md:flex flex-col w-64 fixed left-0 top-[76px] bottom-0 p-4 gap-2 z-30 glass">
+  <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-high hover:text-primary transition-colors">
+    <span class="material-symbols-outlined">home</span>
+    <span style="font-weight:700; font-size:14px; letter-spacing:0.5px;">Início</span>
+  </a>
+  <a href="agenda.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-high hover:text-primary transition-colors">
+    <span class="material-symbols-outlined">calendar_month</span>
+    <span style="font-weight:700; font-size:14px; letter-spacing:0.5px;">Agenda</span>
+  </a>
+  <a href="cultural.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-high hover:text-primary transition-colors">
+    <span class="material-symbols-outlined">theater_comedy</span>
+    <span style="font-weight:700; font-size:14px; letter-spacing:0.5px;">Cultural</span>
+  </a>
+  <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-high hover:text-primary transition-colors">
+    <span class="material-symbols-outlined">map</span>
+    <span style="font-weight:700; font-size:14px; letter-spacing:0.5px;">Mapa</span>
+  </a>
+  <a href="perfil.html" class="flex items-center gap-3 px-4 py-3 rounded-xl glow-yellow text-primary"
+    style="background: rgba(255,184,0,0.1); border: 1px solid rgba(255,184,0,0.25);">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">person</span>
+    <span style="font-weight:700; font-size:14px; letter-spacing:0.5px;">Perfil</span>
+  </a>
+</nav>
+
+<!-- MAIN -->
+<main class="z-content relative md:pl-64 flex flex-col items-center">
+<div class="w-full max-w-2xl mx-auto px-5 flex flex-col gap-5 py-6">
+
+  <!-- Avatar card -->
+  <section class="animate-slide-up delay-1 glass rounded-2xl p-5 flex gap-4 items-center hover-lift">
+    <div class="flex-shrink-0">
+      <div class="avatar-ring w-[88px] h-[88px] flex items-center justify-center">
+        <div class="w-[82px] h-[82px] rounded-full overflow-hidden" style="background: var(--surface-high);">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS_3oVEI59dGfMPOR5PoJ4aFJO0UfjzceXJmZ4mtV6H-31kHFdRTul90OsotWtb_juhZvCRgobEqGphlgop_QKN8Zwf0UGSaIpqMAiUti6L8zq7yFlj1Dd4IK_jfZ4Vo4I9jImAST1-hOfBMefJkTg8JsUHZQAK44WwAuGVzaNpLK59XqkmJRDD6qnjXrpF4Ntm-zC9KzZmn5kixH8gPfWC1WFnT8NAA5GXzYszjSj1uK80Hkcg-WCcsNVaMNE0NIH5N48foZSh2GT"
+            alt="Maria Silva" class="w-full h-full object-cover"/>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-start justify-between">
+        <div>
+          <h2 style="font-family: Newsreader, serif; font-size: 26px; font-weight: 700; line-height: 1.1;"
+            class="text-primary text-glow-yellow">Maria Silva</h2>
+          <p style="font-size:13px;" class="text-on-surface-variant mt-0.5">Foliã de Carteirinha</p>
+          <p style="font-size:12px; margin-top:6px;" class="text-on-surface-variant">📍 Arcoverde, PE</p>
+        </div>
+        <button onclick="showToast('Editar perfil em breve!')"
+          class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-high transition-all flex-shrink-0">
+          <span class="material-symbols-outlined" style="font-size:20px;">edit</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats row -->
+  <div class="animate-slide-up delay-2 grid grid-cols-2 gap-3">
+    <div class="glass rounded-2xl p-4 flex items-center gap-3 hover-lift">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+        style="background: rgba(255,184,0,0.12); border:1px solid rgba(255,184,0,0.25);">
+        <span class="material-symbols-outlined text-primary" style="font-size:20px; font-variation-settings:'FILL' 1;">favorite</span>
+      </div>
+      <div>
+        <p style="font-family: Newsreader, serif; font-size:24px; font-weight:700; line-height:1;" class="text-primary">12</p>
+        <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;" class="text-on-surface-variant">Favoritos</p>
+      </div>
+    </div>
+    <div class="glass rounded-2xl p-4 flex items-center gap-3 hover-lift">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+        style="background: rgba(227,82,5,0.12); border:1px solid rgba(227,82,5,0.25);">
+        <span class="material-symbols-outlined" style="color:#E35205; font-size:20px; font-variation-settings:'FILL' 1;">calendar_month</span>
+      </div>
+      <div>
+        <p style="font-family: Newsreader, serif; font-size:24px; font-weight:700; line-height:1;" class="text-primary">8</p>
+        <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;" class="text-on-surface-variant">Eventos salvos</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Atrações Favoritas -->
+  <section class="animate-slide-up delay-3 flex flex-col gap-3">
+    <h3 style="font-family: Newsreader, serif; font-size:20px; font-weight:700;" class="text-primary text-glow-yellow flex items-center gap-2">
+      <span class="material-symbols-outlined" style="color:#E35205; font-size:22px; font-variation-settings:'FILL' 1;">favorite</span>
+      Atrações Favoritas
+    </h3>
+
+    <div class="glass rounded-2xl p-4 flex items-center justify-between hover-lift">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+          style="background: rgba(255,184,0,0.1); border: 1px solid rgba(255,184,0,0.2);">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">music_note</span>
+        </div>
+        <div>
+          <p style="font-size:16px; font-weight:700; font-family: Newsreader, serif;" class="text-on-surface">Alceu Valença</p>
+          <p style="font-size:12px;" class="text-on-surface-variant">Palco Gonzagão · Qui 19 Jun · 21h</p>
+          <div class="flex gap-1 mt-1">
+            <span class="badge-chip" style="font-size:10px; padding:2px 8px; background:rgba(227,82,5,0.15); color:#E35205; border:1px solid rgba(227,82,5,0.3);">Show</span>
+          </div>
+        </div>
+      </div>
+      <button onclick="showToast('Alceu removido dos favoritos!')" class="p-2 rounded-full hover:bg-surface-high transition-colors">
+        <span class="material-symbols-outlined text-glow-orange" style="color:#E35205; font-variation-settings:'FILL' 1;">favorite</span>
+      </button>
+    </div>
+
+    <div class="glass rounded-2xl p-4 flex items-center justify-between hover-lift">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+          style="background: rgba(255,184,0,0.1); border: 1px solid rgba(255,184,0,0.2);">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">celebration</span>
+        </div>
+        <div>
+          <p style="font-size:16px; font-weight:700; font-family: Newsreader, serif;" class="text-on-surface">Quadrilha Pinga Fogo</p>
+          <p style="font-size:12px;" class="text-on-surface-variant">Arena das Quadrilhas · Sex 20 Jun · 20h</p>
+          <div class="flex gap-1 mt-1">
+            <span class="badge-chip" style="font-size:10px; padding:2px 8px; background:rgba(255,184,0,0.1); color:var(--primary); border:1px solid rgba(255,184,0,0.2);">Quadrilha</span>
+          </div>
+        </div>
+      </div>
+      <button onclick="showToast('Quadrilha removida dos favoritos!')" class="p-2 rounded-full hover:bg-surface-high transition-colors">
+        <span class="material-symbols-outlined text-glow-orange" style="color:#E35205; font-variation-settings:'FILL' 1;">favorite</span>
+      </button>
+    </div>
+
+    <div class="glass rounded-2xl p-4 flex items-center justify-between hover-lift">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+          style="background: rgba(255,184,0,0.1); border: 1px solid rgba(255,184,0,0.2);">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1;">restaurant</span>
+        </div>
+        <div>
+          <p style="font-size:16px; font-weight:700; font-family: Newsreader, serif;" class="text-on-surface">Barraca do Seu Zé</p>
+          <p style="font-size:12px;" class="text-on-surface-variant">Praça da Alimentação · Todos os dias</p>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="badge-chip" style="font-size:10px; padding:2px 8px; background:rgba(255,184,0,0.1); color:var(--primary); border:1px solid rgba(255,184,0,0.2);">Gastronomia</span>
+            <span class="flex items-center gap-0.5 ml-1">
+              <span class="material-symbols-outlined star-filled" style="font-size:12px; font-variation-settings:'FILL' 1;">star</span>
+              <span class="material-symbols-outlined star-filled" style="font-size:12px; font-variation-settings:'FILL' 1;">star</span>
+              <span class="material-symbols-outlined star-filled" style="font-size:12px; font-variation-settings:'FILL' 1;">star</span>
+              <span class="material-symbols-outlined star-filled" style="font-size:12px; font-variation-settings:'FILL' 1;">star</span>
+              <span class="material-symbols-outlined star-empty" style="font-size:12px; font-variation-settings:'FILL' 1;">star</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <button onclick="showToast('Barraca removida dos favoritos!')" class="p-2 rounded-full hover:bg-surface-high transition-colors">
+        <span class="material-symbols-outlined text-glow-orange" style="color:#E35205; font-variation-settings:'FILL' 1;">favorite</span>
+      </button>
+    </div>
+
+    <button onclick="showToast('Explore a agenda para adicionar favoritos!')"
+      class="w-full glass rounded-2xl py-3 flex items-center justify-center gap-2 text-on-surface-variant hover:text-primary transition-colors"
+      style="border-style: dashed;">
+      <span class="material-symbols-outlined" style="font-size:20px;">add_circle</span>
+      <span style="font-size:13px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;">Adicionar favorito</span>
+    </button>
+  </section>
+
+  <!-- Preferências -->
+  <section class="animate-slide-up delay-4 glass rounded-2xl overflow-hidden">
+    <div class="px-5 py-4 border-b" style="border-color: var(--surface-highest);">
+      <p style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase;" class="text-on-surface-variant">Preferências</p>
+    </div>
+    <div class="px-5 py-4 flex items-center justify-between border-b" style="border-color: var(--surface-highest);">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px; font-variation-settings:'FILL' 1;">notifications</span>
+        <span style="font-size:14px; font-weight:500;">Notificações</span>
+      </div>
+      <div class="toggle-track on" onclick="this.classList.toggle('on'); showToast(this.classList.contains('on') ? 'Notificações ativadas' : 'Notificações desativadas')">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+    <div class="px-5 py-4 flex items-center justify-between border-b" style="border-color: var(--surface-highest);">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px; font-variation-settings:'FILL' 1;">wifi_off</span>
+        <div>
+          <span style="font-size:14px; font-weight:500;">Modo Offline</span>
+          <p style="font-size:11px;" class="text-on-surface-variant">Salvar agenda para usar sem internet</p>
+        </div>
+      </div>
+      <div class="toggle-track" onclick="this.classList.toggle('on'); showToast(this.classList.contains('on') ? 'Dados offline salvos!' : 'Modo offline desativado')">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+    <div class="px-5 py-4 flex items-center justify-between border-b" style="border-color: var(--surface-highest);">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px;">language</span>
+        <span style="font-size:14px; font-weight:500;">Idioma</span>
+      </div>
+      <div class="flex items-center gap-2 text-on-surface-variant">
+        <span style="font-size:13px;">Português</span>
+        <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+      </div>
+    </div>
+    <div class="px-5 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px;">help_center</span>
+        <span style="font-size:14px; font-weight:500;">Ajuda & Suporte</span>
+      </div>
+      <span class="material-symbols-outlined text-on-surface-variant" style="font-size:18px;">chevron_right</span>
+    </div>
+  </section>
+
+  <!-- Sair -->
+  <button onclick="showToast('Até a próxima, forrozeiro! 👋')"
+    class="animate-slide-up delay-5 w-full rounded-2xl py-4 flex items-center justify-center gap-3 transition-all hover-lift"
+    style="background: rgba(255,75,75,0.08); border: 1px solid rgba(255,75,75,0.25); color: #ff6b6b;">
+    <span class="material-symbols-outlined" style="font-size:20px;">logout</span>
+    <span style="font-size:13px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;">Sair da Conta</span>
+  </button>
+
+  <p style="font-size:11px; text-align:center;" class="text-on-surface-variant opacity-40 pb-2">São João Vivo v2.0.0 · Arcoverde, PE</p>
+
+</div>
+</main>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav z-content fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-50 flex justify-around items-center px-2 py-3 rounded-[32px] shadow-2xl md:hidden">
+  <a href="agenda.html" class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary">
+    <span class="material-symbols-outlined" style="font-size:24px;">calendar_month</span>
+    <span style="font-size:10px; font-weight:500; margin-top:2px;">Agenda</span>
+  </a>
+  <a href="#" class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary">
+    <span class="material-symbols-outlined" style="font-size:24px;">map</span>
+    <span style="font-size:10px; font-weight:500; margin-top:2px;">Mapa</span>
+  </a>
+  <a href="index.html" class="flex flex-col items-center justify-center rounded-full w-16 h-16 -mt-10 shadow-lg transition-all active:scale-95 border-4"
+    style="background: var(--secondary); color: white; border-color: var(--bg); box-shadow: 0 0 20px rgba(227,82,5,0.5);">
+    <span class="material-symbols-outlined" style="font-size:26px; font-variation-settings:'FILL' 1;">home</span>
+    <span style="font-size:10px; font-weight:700;">Início</span>
+  </a>
+  <a href="cultural.html" class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary">
+    <span class="material-symbols-outlined" style="font-size:24px;">theater_comedy</span>
+    <span style="font-size:10px; font-weight:500; margin-top:2px;">Cultural</span>
+  </a>
+  <a href="perfil.html" class="flex flex-col items-center justify-center flex-1 transition-all active:scale-90" style="color: var(--primary);">
+    <span class="material-symbols-outlined" style="font-size:24px; font-variation-settings:'FILL' 1;">person</span>
+    <span style="font-size:10px; font-weight:700; margin-top:2px;">Perfil</span>
+  </a>
+</nav>
+
+<!-- TOAST -->
+<div id="toast" class="glass-orange rounded-full px-5 py-3 flex items-center gap-2">
+  <span class="material-symbols-outlined" style="color: var(--primary); font-size:18px; font-variation-settings:'FILL' 1;">check_circle</span>
+  <span id="toast-msg" style="font-size:13px; font-weight:600;"></span>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  let toastTimer;
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+  }
+</script>
+</body>
+</html>
