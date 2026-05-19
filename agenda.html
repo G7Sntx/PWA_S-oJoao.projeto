@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>São João Vivo - Agenda</title>
+  
+  <!-- TAGS DO PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#040b1a">
+  <link rel="icon" href="images/icons/icon-192.png" type="image/png">
+
+  <!-- FONTES DO GOOGLE -->
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Newsreader:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- SEU CSS PERSONALIZADO -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- TAILWIND CSS VIA CDN E ARQUIVO DE CONFIGURAÇÃO -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 md:pb-0 pt-16 md:pt-20 selection:bg-primary-container selection:text-on-primary-container">
+  
+  <!-- TopAppBar -->
+  <header class="fixed top-0 left-0 w-full z-40 bg-surface-container/90 backdrop-blur-md border-b border-surface-container-highest shadow-xl flex justify-between items-center px-margin py-sm h-16 md:h-20">
+    <button aria-label="Menu" class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <h1 class="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary drop-shadow-[0_2px_4px_rgba(227,82,5,0.3)]">SÃO JOÃO VIVO</h1>
+    
+    <!-- Web Nav (Agenda Ativa) -->
+    <nav class="hidden md:flex items-center gap-6">
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="index.html">Início</a>
+      <a class="font-label-bold text-label-bold text-primary font-bold hover:bg-surface-container-high px-3 py-2 rounded-md transition-colors" href="agenda.html">Agenda</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="#">Mapa</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="#">Perfil</a>
+    </nav>
+
+    <button aria-label="Notificações" class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
+      <span class="material-symbols-outlined">notifications</span>
+      <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+    </button>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <main class="max-w-7xl mx-auto px-margin">
+    
+    <!-- Cabeçalho da Página e Filtro de Dias -->
+    <section class="py-md mt-sm">
+      <div class="flex flex-col gap-4 mb-6">
+        <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">Programação</h2>
+        <p class="text-on-surface-variant text-body-md -mt-2">Não perca nenhuma atração do maior arrraiá da região!</p>
+      </div>
+
+      <!-- Seleção de Datas Corrediça -->
+      <div class="flex gap-sm overflow-x-auto hide-scrollbar py-2 snap-x">
+        <button class="snap-start shrink-0 bg-primary text-on-primary font-label-bold text-label-bold px-5 py-3 rounded-full uppercase shadow-md transition-all">
+          Sex, 22 Jun
+        </button>
+        <button class="snap-start shrink-0 bg-surface-container-low border border-surface-variant text-on-surface-variant font-label-bold text-label-bold px-5 py-3 rounded-full uppercase hover:border-primary/40 transition-all">
+          Sáb, 23 Jun
+        </button>
+        <button class="snap-start shrink-0 bg-surface-container-low border border-surface-variant text-on-surface-variant font-label-bold text-label-bold px-5 py-3 rounded-full uppercase hover:border-primary/40 transition-all">
+          Dom, 24 Jun
+        </button>
+        <button class="snap-start shrink-0 bg-surface-container-low border border-surface-variant text-on-surface-variant font-label-bold text-label-bold px-5 py-3 rounded-full uppercase hover:border-primary/40 transition-all">
+          Seg, 25 Jun
+        </button>
+      </div>
+    </section>
+
+    <!-- Lista Cronológica da Programação -->
+    <section class="py-sm flex flex-col gap-gutter mb-12">
+      
+      <!-- Bloco de Evento 1 (Ao Vivo) -->
+      <article class="bg-surface-container-low border border-primary/40 rounded-xl flex flex-col md:flex-row overflow-hidden group hover:border-primary transition-colors relative">
+        <div class="bg-error text-on-error font-label-bold text-label-sm px-3 py-1 uppercase absolute top-3 left-3 rounded-full z-10 shadow-md md:hidden">Ao Vivo</div>
+        <div class="h-44 md:h-auto md:w-64 bg-surface-variant shrink-0 relative" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANH2HV0esZg8yp_NQJnvkGrcS2nOZMA3iJPGYfnmaUN2SOXOdYHQ-X_2rwypTAyzHspm--t8mTa48juKHd-SIr-OqtUNpdp3WklXwR_DiTJoFwDfUKLXGghH8idTCZko_rbiEHYITqL0C3I8RD7ebrGt766w2i8gw7eR2kXw3JyhLeGTEvDuVJ1kWTGFAJs1VIBcRaQIX_-gsVckxG5Ule_i3GTiGwP-RvCI2vqLF2Jojdp0vF2sjD1izuYcaw9nXql6FMvK3900Ro'); background-size: cover; background-position: center;">
+          <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-surface-container-low to-transparent"></div>
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between gap-4">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="bg-surface-bright text-on-surface px-3 py-0.5 rounded-full border border-surface-variant font-label-sm text-label-sm uppercase">Forró</span>
+              <span class="hidden md:inline-block bg-error text-on-error font-label-bold text-label-bold px-3 py-1 rounded-full uppercase shadow-[0_0_10px_rgba(255,180,171,0.5)]">Ao Vivo</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-2 group-hover:text-primary transition-colors">Trio Pé de Serra</h3>
+            <p class="text-on-surface-variant text-body-md mt-1 line-clamp-2">O autêntico forró pé de serra para levantar a poeira e dançar coladinho a noite inteira.</p>
+          </div>
+          <div class="flex flex-wrap gap-x-6 gap-y-2 border-t border-surface-variant/40 pt-3">
+            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary">location_on</span>Palco Principal</div>
+            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary">schedule</span>20:00 - 22:00</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bloco de Evento 2 -->
+      <article class="bg-surface-container-low border border-surface-variant rounded-xl flex flex-col md:flex-row overflow-hidden group hover:border-primary/50 transition-colors relative">
+        <div class="h-44 md:h-auto md:w-64 bg-surface-variant shrink-0 relative" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmGVId9_DvsYC25j1v_gLUOy0nM2EiBLTa0TJNGT_mz3KbF5DYtgfOEZsQc2b0xa7QDP5V0PCd-D9dvgk8AvtFKU_iPczTRpHtMS-vSeP9iK-tdX1N0tzfZVBXqgvxgkaUJBm0Weu_tuuUApRjfDfdkU4GsmO3a8frjgkqDF000Lzril_JDD4pUdR1-f4CapV-38X3Z6f8ga_LZx8ZK-1G9MqTR4TByZzLdy4xCTJyluAF8XgqoggZt-ZvUqlz6e56MTAM8ViGd0pm'); background-size: cover; background-position: center;">
+          <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-surface-container-low to-transparent"></div>
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between gap-4">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="bg-surface-bright text-on-surface px-3 py-0.5 rounded-full border border-surface-variant font-label-sm text-label-sm uppercase">Quadrilha</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md font-bold text-on-surface mt-2 group-hover:text-primary transition-colors">Flor do Sertão</h3>
+            <p class="text-on-surface-variant text-body-md mt-1 line-clamp-2">Apresentação especial da quadrilha estilizada campeã regional, trazendo cores, sincronia e muita emoção.</p>
+          </div>
+          <div class="flex flex-wrap gap-x-6 gap-y-2 border-t border-surface-variant/40 pt-3">
+            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">location_on</span>Arena das Tradições</div>
+            <div class="flex items-center text-on-surface-variant text-body-md"><span class="material-symbols-outlined mr-2 text-[20px] text-primary-fixed-dim">schedule</span>22:30 - 23:30</div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- BottomNavBar (Agenda Ativa no Mobile) -->
+  <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50 flex justify-around items-center px-2 py-3 bg-surface-container-high/90 backdrop-blur-xl border border-primary/20 rounded-[32px] shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:hidden">
+    <a class="flex flex-col items-center justify-center text-primary flex-1 transition-all active:scale-90" href="agenda.html">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+      <span class="font-label-sm text-[10px] mt-1 font-bold">Agenda</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="#">
+      <span class="material-symbols-outlined">map</span>
+      <span class="font-label-sm text-[10px] mt-1">Mapa</span>
+    </a>
+    <a class="flex flex-col items-center justify-center bg-surface-container border border-surface-variant text-on-surface-variant rounded-full w-14 h-14 -mt-6 shadow-md transition-all active:scale-95" href="index.html">
+      <span class="material-symbols-outlined">home</span>
+      <span class="font-label-sm text-[9px]">Início</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="#">
+      <span class="material-symbols-outlined">theater_comedy</span>
+      <span class="font-label-sm text-[10px] mt-1">Cultural</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant flex-1 transition-all active:scale-90 hover:text-primary" href="#">
+      <span class="material-symbols-outlined">person</span>
+      <span class="font-label-sm text-[10px] mt-1">Perfil</span>
+    </a>
+  </nav>
+
+  <!-- SCRIPT PWA NO FIM DO BODY -->
+  <script src="js/app.js"></script>
+</body>
+</html>

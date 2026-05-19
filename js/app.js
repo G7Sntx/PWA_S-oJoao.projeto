@@ -1,7 +1,6 @@
-
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js') 
+    navigator.serviceWorker.register('sw.js', { scope: '/' }) // ✅ escopo explícito
       .then(reg => console.log('PWA São João pronto para rodar offline!', reg))
       .catch(err => console.log('Erro ao registrar PWA:', err));
   });

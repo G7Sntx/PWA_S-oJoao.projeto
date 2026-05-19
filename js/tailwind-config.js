@@ -37,6 +37,7 @@ tailwind.config = {
         "secondary-fixed": "#ffdbd1",
         "secondary-fixed-dim": "#E35205",
         "tertiary": "#e1e1e1",
+        "tertiary-fixed-dim": "#b0b8c8", // ✅ cor adicionada, usada nos ícones de local/horário
         "outline": "#514532",
         "outline-variant": "#413626"
       },
