@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sao-joao-v9'; // ✅ versão incrementada para derrubar caches antigos
+const CACHE_NAME = 'sao-joao-v10'; // ✅ versão incrementada para derrubar caches antigos
 
 const ASSETS_TO_CACHE = [
   '/',
