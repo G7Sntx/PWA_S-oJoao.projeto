@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sao-joao-v11'; // ✅ versão incrementada para derrubar caches antigos
+const CACHE_NAME = 'sao-joao-v15'; // ✅ versão incrementada para derrubar caches antigos
 
 const ASSETS_TO_CACHE = [
   '/',
@@ -6,10 +6,13 @@ const ASSETS_TO_CACHE = [
   '/agenda.html',    
   '/cultural.html',   
   '/perfil.html',     
+  '/info.html',
   '/css/style.css',
   '/js/app.js',
   '/js/tailwind-config.js', 
   '/manifest.json',
+  '/images/icons/icon-192.png',
+  '/images/icons/icon-512.png',
 ];
 
 // Instalação do Service Worker
