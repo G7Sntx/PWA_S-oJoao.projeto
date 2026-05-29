@@ -16,8 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Newsreader:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
-  <!-- TAILWIND CSS VIA CDN -->
-  <script src="js/tailwind-config.js"></script>
+  <!-- TAILWIND CSS VIA CDN E ARQUIVO DE CONFIGURAÇÃO -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -224,6 +224,21 @@
       <span class="material-symbols-outlined">notifications</span>
       <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
     </button>
+    
+   <!-- Web Nav (Hidden on Mobile) -->
+    <nav class="hidden md:flex items-center gap-6">
+      <a class="font-label-bold text-label-bold text-primary font-bold hover:bg-surface-container-high px-3 py-2 rounded-md transition-colors" href="index.html">Início</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="agenda.html">Agenda</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="cultural.html">Cultural</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="info.html">Informações</a>
+      <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-md transition-colors" href="perfil.html">Perfil</a>
+    </nav>
+    
+    <button aria-label="Notificações" class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
+      <span class="material-symbols-outlined">notifications</span>
+      <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+    </button>
+
   </header>
 
   <!-- ══ BANDEIRINHAS ══ -->
